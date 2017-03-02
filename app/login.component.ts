@@ -16,5 +16,9 @@ export class LoginComponent {
         this.app.logged = true;
         this.router.navigate(['/forums']);
     }
+
+    signUp(): void{
+        this.router.navigate(['/signup']);
+    }
 }
 
