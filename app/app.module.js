@@ -13,11 +13,14 @@ var platform_browser_1 = require('@angular/platform-browser');
 var http_1 = require('@angular/http');
 var app_routing_module_1 = require('./app-routing.module');
 // Components
+var app_component_1 = require('./app.component');
 var login_component_1 = require('./login.component');
-var ForumModule = (function () {
-    function ForumModule() {
+var forums_component_1 = require('./forums.component');
+var profile_component_1 = require('./profile.component');
+var AppModule = (function () {
+    function AppModule() {
     }
-    ForumModule = __decorate([
+    AppModule = __decorate([
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
@@ -25,13 +28,16 @@ var ForumModule = (function () {
                 app_routing_module_1.AppRoutingModule
             ],
             declarations: [
-                login_component_1.LoginComponent
+                login_component_1.LoginComponent,
+                forums_component_1.ForumsComponent,
+                profile_component_1.ProfileComponent,
+                app_component_1.AppComponent
             ],
-            bootstrap: [login_component_1.LoginComponent]
+            bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])
-    ], ForumModule);
-    return ForumModule;
+    ], AppModule);
+    return AppModule;
 }());
-exports.ForumModule = ForumModule;
-//# sourceMappingURL=forum.module.js.map
+exports.AppModule = AppModule;
+//# sourceMappingURL=app.module.js.map

@@ -9,9 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var app_component_1 = require('./app.component');
+var router_1 = require('@angular/router');
 var LoginComponent = (function () {
-    function LoginComponent() {
+    function LoginComponent(router, app) {
+        this.router = router;
+        this.app = app;
     }
+    LoginComponent.prototype.logIn = function () {
+        this.app.logged = true;
+        this.router.navigate(['/forums']);
+    };
     LoginComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -19,7 +27,7 @@ var LoginComponent = (function () {
             templateUrl: 'html/login.component.html',
             styleUrls: ['style/login.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.Router, app_component_1.AppComponent])
     ], LoginComponent);
     return LoginComponent;
 }());

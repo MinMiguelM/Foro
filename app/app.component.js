@@ -9,25 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-var login_component_1 = require('./login.component');
-var forums_component_1 = require('./forums.component');
-var routes = [
-    { path: '', redirectTo: '/login', pathMatch: 'full' },
-    { path: 'login', component: login_component_1.LoginComponent },
-    { path: 'forums', component: forums_component_1.ForumsComponent }
-];
-var AppRoutingModule = (function () {
-    function AppRoutingModule() {
+var AppComponent = (function () {
+    function AppComponent() {
+        this.logged = false;
     }
-    AppRoutingModule = __decorate([
-        core_1.NgModule({
-            imports: [router_1.RouterModule.forRoot(routes)],
-            exports: [router_1.RouterModule]
+    AppComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'my-app',
+            templateUrl: 'html/app.component.html',
+            styleUrls: ['style/app.component.css']
         }), 
         __metadata('design:paramtypes', [])
-    ], AppRoutingModule);
-    return AppRoutingModule;
+    ], AppComponent);
+    return AppComponent;
 }());
-exports.AppRoutingModule = AppRoutingModule;
-//# sourceMappingURL=app-routing.module.js.map
+exports.AppComponent = AppComponent;
+//# sourceMappingURL=app.component.js.map

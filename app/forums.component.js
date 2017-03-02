@@ -9,25 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-var login_component_1 = require('./login.component');
-var forums_component_1 = require('./forums.component');
-var routes = [
-    { path: '', redirectTo: '/login', pathMatch: 'full' },
-    { path: 'login', component: login_component_1.LoginComponent },
-    { path: 'forums', component: forums_component_1.ForumsComponent }
-];
-var AppRoutingModule = (function () {
-    function AppRoutingModule() {
+var ForumsComponent = (function () {
+    function ForumsComponent() {
     }
-    AppRoutingModule = __decorate([
-        core_1.NgModule({
-            imports: [router_1.RouterModule.forRoot(routes)],
-            exports: [router_1.RouterModule]
+    ForumsComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'forums',
+            templateUrl: 'html/forums.component.html',
+            styleUrls: ['style/forums.component.css']
         }), 
         __metadata('design:paramtypes', [])
-    ], AppRoutingModule);
-    return AppRoutingModule;
+    ], ForumsComponent);
+    return ForumsComponent;
 }());
-exports.AppRoutingModule = AppRoutingModule;
-//# sourceMappingURL=app-routing.module.js.map
+exports.ForumsComponent = ForumsComponent;
+//# sourceMappingURL=forums.component.js.map

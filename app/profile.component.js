@@ -9,24 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var platform_browser_1 = require('@angular/platform-browser');
-var login_component_1 = require('./login.component');
-var ForumModule = (function () {
-    function ForumModule() {
+var ProfileComponent = (function () {
+    function ProfileComponent() {
+        this.nombre = "probando";
     }
-    ForumModule = __decorate([
-        core_1.NgModule({
-            imports: [
-                platform_browser_1.BrowserModule
-            ],
-            declarations: [
-                login_component_1.LoginComponent
-            ],
-            bootstrap: [login_component_1.LoginComponent]
+    ProfileComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'profile',
+            templateUrl: 'html/profile.component.html',
+            styleUrls: ['style/profile.component.css']
         }), 
         __metadata('design:paramtypes', [])
-    ], ForumModule);
-    return ForumModule;
+    ], ProfileComponent);
+    return ProfileComponent;
 }());
-exports.ForumModule = ForumModule;
-//# sourceMappingURL=login.module.js.map
+exports.ProfileComponent = ProfileComponent;
+//# sourceMappingURL=profile.component.js.map
