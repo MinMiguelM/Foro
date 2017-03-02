@@ -10,6 +10,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
+var http_1 = require('@angular/http');
+var app_routing_module_1 = require('./app-routing.module');
+// Components
 var login_component_1 = require('./login.component');
 var ForumModule = (function () {
     function ForumModule() {
@@ -17,7 +20,9 @@ var ForumModule = (function () {
     ForumModule = __decorate([
         core_1.NgModule({
             imports: [
-                platform_browser_1.BrowserModule
+                platform_browser_1.BrowserModule,
+                http_1.HttpModule,
+                app_routing_module_1.AppRoutingModule
             ],
             declarations: [
                 login_component_1.LoginComponent
@@ -29,4 +34,4 @@ var ForumModule = (function () {
     return ForumModule;
 }());
 exports.ForumModule = ForumModule;
-//# sourceMappingURL=login.module.js.map
+//# sourceMappingURL=forum.module.js.map
