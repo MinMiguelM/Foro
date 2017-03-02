@@ -1,1 +1,0 @@
-{"version":3,"file":"forums.component.js","sourceRoot":"","sources":["forums.component.ts"],"names":[],"mappings":";;;;;;;;;;AAAA,qBAAwB,eAExB,CAAC,CAFsC;AAQvC;IAAA;IAEA,CAAC;IARD;QAAC,gBAAS,CAAC;YACP,QAAQ,EAAE,MAAM,CAAC,EAAE;YACnB,QAAQ,EAAE,QAAQ;YAClB,WAAW,EAAE,4BAA4B;YACzC,SAAS,EAAC,CAAC,4BAA4B,CAAC;SAC3C,CAAC;;uBAAA;IAGF,sBAAC;AAAD,CAAC,AAFD,IAEC;AAFY,uBAAe,kBAE3B,CAAA"}
