@@ -1,3 +1,12 @@
 <div class="forums">
-    aquí van los foros: Felipe
+    <a *ngFor="let forum of forums" [routerLink]="['/forum', 141512]" class="col-1-4">
+        <div class="forum">
+            <h4>{{forum}}</h4>
+        </div>
+    </a>
+    <a class="col-1-4" (click)="addForum('hola')">
+        <div class="forum new">
+            <h4>nuevo</h4>
+        </div>
+    </a>
 </div>

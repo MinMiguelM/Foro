@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {AppComponent} from './app.component';
+import { Component } from '@angular/core';
+import { AppComponent } from './app.component';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,8 +9,10 @@ import { Router } from '@angular/router';
     styleUrls:['style/login.component.css']
 })
 export class LoginComponent {
-    constructor(private router: Router, 
-                private app: AppComponent) { }
+    constructor(
+        private router: Router, 
+        private app: AppComponent
+    ) { }
 
     logIn(): void{
         this.app.logged = true;
