@@ -11,6 +11,7 @@ import {ForumsComponent} from './forums.component';
 import {ProfileComponent} from './profile.component';
 import {SignupComponent} from './signup.component';
 import {ForumComponent} from './forum.component';
+import {TopicComponent} from './topic.component';
 
 @NgModule({
     imports: [
@@ -21,6 +22,7 @@ import {ForumComponent} from './forum.component';
         ReactiveFormsModule
     ],
     declarations: [
+        TopicComponent,
         LoginComponent,
         ForumsComponent,
         ProfileComponent,

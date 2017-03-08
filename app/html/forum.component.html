@@ -1,3 +1,12 @@
 <div class="topics">
-    list of topics
+    <a *ngFor="let topic of topics" [routerLink]="['/topic', 141512]" class="col-1-4">
+        <div class="topic">
+            <h4>{{topic}}</h4>
+        </div>
+    </a>
+    <a class="col-1-4" (click)="addTopic('topico')">
+        <div class="topic new">
+            <h4>nuevo</h4>
+        </div>
+    </a>
 </div>
