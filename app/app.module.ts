@@ -6,12 +6,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Components
 import {AppComponent} from './app.component';
-import {LoginComponent} from './login.component';
-import {ForumsComponent} from './forums.component';
-import {ProfileComponent} from './profile.component';
-import {SignupComponent} from './signup.component';
-import {ForumComponent} from './forum.component';
-import {TopicComponent} from './topic.component';
+import {LoginComponent} from './sign/login.component';
+import {ForumComponent} from './forum/forum.component';
+import {ProfileComponent} from './profile/profile.component';
+import {SignupComponent} from './sign/signup.component';
+import {TopicComponent} from './topic/topic.component';
+import {DetailTopicComponent} from './topic/detail-topic.component';
 
 @NgModule({
     imports: [
@@ -24,10 +24,11 @@ import {TopicComponent} from './topic.component';
     declarations: [
         TopicComponent,
         LoginComponent,
-        ForumsComponent,
+        ForumComponent,
         ProfileComponent,
         SignupComponent,
-        ForumComponent,
+        TopicComponent,
+        DetailTopicComponent,
         AppComponent
     ],
     bootstrap: [AppComponent]

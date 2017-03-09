@@ -3,11 +3,11 @@ import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
     moduleId: module.id,
-    selector: 'forum',
-    templateUrl: 'html/forum.component.html',
-    styleUrls:['style/forum.component.css']
+    selector: 'topic',
+    templateUrl: '../html/topic.component.html',
+    styleUrls:['../style/topic.component.css']
 })
-export class ForumComponent implements OnInit{
+export class TopicComponent implements OnInit{
     //forum
 
     constructor(

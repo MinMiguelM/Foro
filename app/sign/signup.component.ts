@@ -4,8 +4,8 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 @Component({
     moduleId: module.id,
     selector: 'signup',
-    templateUrl: 'html/signup.component.html',
-    styleUrls:['style/signup.component.css']
+    templateUrl: '../html/signup.component.html',
+    styleUrls:['../style/signup.component.css']
 })
 export class SignupComponent{
     inputForm: FormGroup;
