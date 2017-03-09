@@ -1,3 +1,18 @@
+.cabezaTopico{
+	width: 100%;
+	z-index:100;
+	background:#1E90FF;
+	display: block;
+	padding: 10px;
+	text-align: center;
+	border: solid;
+}
+.boton {
+padding: 0;
+border: none;
+background: none;
+
+}
 .topic{
     border:.5px solid white;
     background:lightgray;

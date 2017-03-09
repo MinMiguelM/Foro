@@ -1,3 +1,18 @@
+.cabezaTopico{
+	width: 100%;
+	z-index:100;
+	background:#66ff33;
+	display: block;
+	padding: 10px;
+	text-align: center;
+	border: solid;
+}
+.boton {
+padding: 0;
+border: none;
+background: none;
+
+}
 .body{
     background: deepskyblue;
 }

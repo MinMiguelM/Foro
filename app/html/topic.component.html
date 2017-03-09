@@ -1,4 +1,9 @@
+
+<div class="cabezaTopico"> 
+		 <button class ="boton" (click)="BackForos()">Foros</button>
+</div>
 <div class="topics">
+
     <a *ngFor="let topic of topics" [routerLink]="['/topic', 141512]" class="col-1-4">
         <div class="topic">
             <h4>{{topic}}</h4>

@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
     moduleId: module.id,
@@ -11,7 +12,8 @@ export class TopicComponent implements OnInit{
     //forum
 
     constructor(
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private router: Router
     ) {}
 
     ngOnInit(): void {
@@ -22,6 +24,10 @@ export class TopicComponent implements OnInit{
 
     addTopic(label: string):void{
         this.topics.push(label);
+    }
+    BackForos(): void{
+        
+        this.router.navigate(['/forums']);
     }
 
 }
