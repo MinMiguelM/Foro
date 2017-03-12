@@ -12,6 +12,8 @@ import {ProfileComponent} from './profile/profile.component';
 import {SignupComponent} from './sign/signup.component';
 import {TopicComponent} from './topic/topic.component';
 import {DetailTopicComponent} from './topic/detail-topic.component';
+import { NewForumComponent } from './forum/new-forum.component';
+import { NewTopicComponent } from './topic/new-topic.component';
 
 @NgModule({
     imports: [
@@ -29,6 +31,8 @@ import {DetailTopicComponent} from './topic/detail-topic.component';
         SignupComponent,
         TopicComponent,
         DetailTopicComponent,
+        NewForumComponent,
+        NewTopicComponent,
         AppComponent
     ],
     bootstrap: [AppComponent]

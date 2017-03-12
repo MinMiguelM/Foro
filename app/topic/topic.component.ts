@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Router } from '@angular/router';
+import { Location }               from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
     moduleId: module.id,
@@ -13,6 +14,7 @@ export class TopicComponent implements OnInit{
 
     constructor(
         private route: ActivatedRoute,
+        private location: Location, 
         private router: Router
     ) {}
 
@@ -22,12 +24,12 @@ export class TopicComponent implements OnInit{
 
     topics:Array<string> = ['Topic1','Topic2','Topic3','Topic4','Topic5'];
 
-    addTopic(label: string):void{
-        this.topics.push(label);
+    addTopic():void{
+        this.router.navigate(['/new_topic']);
     }
-    BackForos(): void{
-        
-        this.router.navigate(['/forums']);
+
+    goBack(): void{
+        this.location.back();
     }
 
 }

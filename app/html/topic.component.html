@@ -1,17 +1,26 @@
 
-<div class="cabezaTopico"> 
-		 <button class ="boton" (click)="BackForos()">Foros</button>
-</div>
+<a (click)="goBack()" class="back"><< Volver</a>
 <div class="topics">
-
-    <a *ngFor="let topic of topics" [routerLink]="['/topic', 141512]" class="col-1-4">
-        <div class="topic">
-            <h4>{{topic}}</h4>
-        </div>
-    </a>
-    <a class="col-1-4" (click)="addTopic('topico')">
-        <div class="topic new">
-            <h4>nuevo</h4>
+    <div class="topic-container">
+        <h4 class="label-number"></h4>
+        <a (click)="addTopic()">
+            <div class="topic new">
+                <h4>nuevo</h4>
+            </div>
+        </a>
+    </div>
+    <a *ngFor="let topic of topics; let i = index" [routerLink]="['/topic', 141512]">
+        <div class="topic-container">
+            <h4 class="label-number">{{i+1}}.</h4>
+            <div class="topic">
+                <h4>{{topic}}</h4>
+            </div>
+            <div class="points-buttons">
+                <button class="point"
+                        (click)="up(topic); $event.stopPropagation()">+</button>
+                <button class="point"
+                        (click)="down(topic); $event.stopPropagation()">-</button>
+            </div>
         </div>
     </a>
 </div>

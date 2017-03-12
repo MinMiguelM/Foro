@@ -1,20 +1,4 @@
-.cabezaTopico{
-	width: 100%;
-	z-index:100;
-	background:#1E90FF;
-	display: block;
-	padding: 10px;
-	text-align: center;
-	border: solid;
-}
-.boton {
-padding: 0;
-border: none;
-background: none;
-
-}
 .topics{
-    
     border:.5px solid white;
     background:lightgray;
     border-radius:10px;
@@ -27,30 +11,48 @@ background: none;
 }
 a {
     text-decoration: none;
-}
-[class*='col-'] {
-    float: left;
-    padding-right: 20px;
-    padding-bottom: 20px;
-}
-.col-1-4 {
-    width: 25%;
+    cursor:pointer;
 }
 .topic{
-    padding: 20px;
+    padding: 10px;
     text-align: center;
     color: #eee;
-    max-height: 120px;
-    min-width: 120px;
+    height: 60px;
+    width: 80%;
     background-color: #607D8B;
     border-radius: 2px;
     border-style:double;
+    display: inline-block;
+}
+.label-number{
+    width:10%;
+    float:left;
+    font-size: 35px;
 }
 .topic:hover {
     background-color: #EEE;
-    cursor: pointer;
     color: #607d8b;
 }
 .new{
     border-style: dashed;
+}
+.points-buttons{
+    float:right;
+}
+.point {
+    height: 50%;
+    width: 100%;
+    margin-top:6px;
+    background-color: gray !important;
+    color:white;
+    font-family: Arial;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    cursor: hand;
+    display: inline-block;
+}
+.point:hover{
+    background-color: white !important;
+    color:gray;
 }

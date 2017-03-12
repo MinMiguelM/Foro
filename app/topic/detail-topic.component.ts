@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Router } from '@angular/router';
+import { Location }               from '@angular/common';
 
 @Component({
     moduleId: module.id,
@@ -10,19 +10,17 @@ import { Router } from '@angular/router';
 })
 export class DetailTopicComponent implements OnInit{
     
-
     constructor(
         private route: ActivatedRoute,
-        private router: Router
+        private location: Location
     ) {}
 
     ngOnInit(): void {
         
     }
-BackForos(): void{
-        
-        this.router.navigate(['/forums']);
-    }
     
+    goBack(): void{
+        this.location.back();
+    }
 
 }
