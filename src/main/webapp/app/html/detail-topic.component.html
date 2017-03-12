@@ -1,4 +1,18 @@
 <a (click)="goBack()" class="back"><< Volver</a>
 <div class="topic">
-    comentarios
+    <a *ngFor="let u of users; let i = index" [routerLink]="['/comment', 141512]">
+        <div class="comment-container">
+            <h4 class="label-number">{{i+1}}.</h4>
+            <div class="comment">
+                <h4>{{u}}</h4>
+            </div>
+            <div class="points-buttons">
+                <button class="point"
+                        (click)="up(topic); $event.stopPropagation()">+</button>
+                <button class="point"
+                        (click)="down(topic); $event.stopPropagation()">-</button>
+            </div>
+        </div>
+    </a>
 </div>
+

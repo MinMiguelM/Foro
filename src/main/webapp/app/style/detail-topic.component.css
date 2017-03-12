@@ -12,3 +12,46 @@ a {
     text-decoration: none;
     cursor:pointer;
 }
+.comment{
+    padding: 10px;
+    text-align: center;
+    color: #eee;
+    height: 60px;
+    width: 80%;
+    background-color: #607D8B;
+    border-radius: 2px;
+    border-style:double;
+    display: inline-block;
+}
+.label-number{
+    width:10%;
+    float:left;
+    font-size: 35px;
+}
+.comment:hover {
+    background-color: #EEE;
+    color: #607d8b;
+}
+.new{
+    border-style: dashed;
+}
+.points-buttons{
+    float:right;
+}
+.point {
+    height: 50%;
+    width: 100%;
+    margin-top:6px;
+    background-color: gray !important;
+    color:white;
+    font-family: Arial;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    cursor: hand;
+    display: inline-block;
+}
+.point:hover{
+    background-color: white !important;
+    color:gray;
+}
