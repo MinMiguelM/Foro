@@ -1,0 +1,19 @@
+<div class="new-forum">
+    <form>
+        <h1>Nuevo foro</h1>
+        <label for="forumLabel">Nombre del foro: </label>
+        <input type="text" id="forumLabel" name="forumName">
+        <br><br>
+        <label for="type">Moderación: </label>
+        <select id="type" class="box">
+            <option value="noModerate">No Moderado</option>
+            <option value="moderate">Moderado</option>
+        </select>
+        <br>
+        <div class="buttons">
+            <button (click)="create()">Crear</button>
+            <br>
+            <button (click)="cancel()">Cancelar</button>
+        </div>
+    </form>
+</div>

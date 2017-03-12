@@ -1,0 +1,12 @@
+/home/miguel/NetBeansProjects/ForumApp/src/main/java/co/edu/javeriana/service/RoleFacadeREST.java
+/home/miguel/NetBeansProjects/ForumApp/src/main/java/co/edu/javeriana/service/ApplicationConfig.java
+/home/miguel/NetBeansProjects/ForumApp/src/main/java/co/edu/javeriana/service/TopicFacadeREST.java
+/home/miguel/NetBeansProjects/ForumApp/src/main/java/co/edu/javeriana/entities/Forum.java
+/home/miguel/NetBeansProjects/ForumApp/src/main/java/co/edu/javeriana/service/AbstractFacade.java
+/home/miguel/NetBeansProjects/ForumApp/src/main/java/co/edu/javeriana/service/ForumFacadeREST.java
+/home/miguel/NetBeansProjects/ForumApp/src/main/java/co/edu/javeriana/entities/Role.java
+/home/miguel/NetBeansProjects/ForumApp/src/main/java/co/edu/javeriana/service/CommentFacadeREST.java
+/home/miguel/NetBeansProjects/ForumApp/src/main/java/co/edu/javeriana/entities/Users.java
+/home/miguel/NetBeansProjects/ForumApp/src/main/java/co/edu/javeriana/service/UsersFacadeREST.java
+/home/miguel/NetBeansProjects/ForumApp/src/main/java/co/edu/javeriana/entities/Comment.java
+/home/miguel/NetBeansProjects/ForumApp/src/main/java/co/edu/javeriana/entities/Topic.java

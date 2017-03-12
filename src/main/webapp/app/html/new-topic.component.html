@@ -1,0 +1,15 @@
+<div class="new-topic">
+    <form>
+        <h1>Nuevo tema</h1>
+        <label for="topicLabel">Nombre del nuevo tema: </label>
+        <input type="text" id="topicLabel" name="topicName">
+        <br> <br>
+        <label for="topicContent">Contenido: </label>
+        <textarea class="contentArea" id="topicContent" type="text" name="content" ></textarea>
+        <div class="buttons">
+            <button (click)="create()">Crear</button>
+            <br>
+            <button (click)="cancel()">Cancelar</button>
+        </div>
+    </form>
+</div>
