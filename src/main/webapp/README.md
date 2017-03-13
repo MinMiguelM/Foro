@@ -1,5 +1,5 @@
 # Foro
-Web app for Programación Web Class.
+Front-end
 #1. Starting
 
 ##1.1. Prerequisites
