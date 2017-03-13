@@ -13,21 +13,27 @@ export class DetailTopicComponent implements OnInit{
     constructor(
         private route: ActivatedRoute,
         private location: Location
-    ) {}
-    //comentario={usuario:"",contenido:"",puntos:0};
+    ) { }
+
+    comments: Array<Object> = new Array();
+    newcomment={usuario:"Felipe87",contenido:"Comentario viejo sobre pendejadas",puntos:30};
     ngOnInit(): void {
-        
+        this.comments.push(Object.assign({},this.newcomment));
     }
     
     goBack(): void{
         this.location.back();
     }
     users:Array<string> = ['USarios13','usuari34','kjd3'];
-    comments:Array<string> = ['Comentario viejo sobre pendejadas','Comentario viejo sobre pendejadas','Comentario viejo sobre pendejadas'];
+    //comments:Array<string> = ['Comentario viejo sobre pendejadas','Comentario viejo sobre pendejadas','Comentario viejo sobre pendejadas'];
    
-   // comments=[];
-   // newcomment={usuario:"Felipe87",contenido:"Comentario viejo sobre pendejadas",puntos:30};
-   // this.comments.push(Object.assign({},this.necomment));
+   // cuando se usa this, el objeto debe ser llamado desde una función
+   // si quiere que sea al cargar el componente, ponerlo en el ngOnInit
     
+    test(){
+        console.log(this.comments[0].usuario);
+        console.log(this.comments[0].contenido);
+        console.log(this.comments[0].puntos);
+    }
     
 }

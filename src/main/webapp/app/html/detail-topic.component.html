@@ -1,6 +1,6 @@
 <a (click)="goBack()" class="back"><< Volver</a>
 <div class="topic">
-    <a *ngFor="let u of users; let i = index" [routerLink]="['/comment', 141512]">
+    <a *ngFor="let u of users; let i = index" (click)="test()">
         <div class="comment-container">
             <h4 class="label-number">{{i+1}}.</h4>
             <div class="comment">
