@@ -7,7 +7,7 @@
         <br>
         <label for="passwordLabel">Contraseña: </label>
         <input type="password" id="passwordLabel" name ="password" formControlName="password">
-        <div class="errorMsg" *ngIf="inputForm.get('password').touched && inputForm.get('password').status === 'INVALID'">Contraseña es requerida</div>
+        <div class="errorMsg" *ngIf="inputForm.get('password').touched && inputForm.get('password').status === 'INVALID'">Contraseña mínimo 8 caracteres</div>
         <br>
         <label for="repeatPasswordLabel">Repita Contraseña: </label>
         <input type="password" id="repeatPasswordLabel" name ="repeatPassword" formControlName="rPassword">

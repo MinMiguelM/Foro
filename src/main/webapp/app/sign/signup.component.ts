@@ -14,7 +14,7 @@ export class SignupComponent{
 
         this.inputForm = this.formBuilder.group({
             username: new FormControl('',Validators.required),
-            password: new FormControl('',Validators.required),
+            password: new FormControl('',Validators.compose([Validators.required,Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')])),
             rPassword: new FormControl('',Validators.required)
         });
     }

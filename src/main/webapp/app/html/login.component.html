@@ -1,13 +1,15 @@
 <div class="login" >
-    <form>
+    <form [formGroup]="inputForm" novalidate>
         <h1>INGRESO</h1>
         <label for="usernameLabel">Nombre de usuario: </label>
-        <input type="text" id="usernameLabel" name="username">
-        <br><br>
+        <input type="text" id="usernameLabel" name="username" formControlName="username">
+        <div class="errorMsg" *ngIf="inputForm.get('username').touched && inputForm.get('username').status === 'INVALID'">Nombre de usuario es requerido</div>
+        <br>
         <label for="passwordLabel">Contraseña: </label>
-        <input type="password" id="passwordLabel" name ="password">
+        <input type="password" id="passwordLabel" name ="password" formControlName="password">
+        <div class="errorMsg" *ngIf="inputForm.get('password').touched && inputForm.get('password').status === 'INVALID'">Contraseña es requerida</div>
         <br><br>
-        <button (click)="logIn()">Ingresar</button>
+        <button [disabled]="!inputForm.valid || !inputForm.touched" (click)="logIn()">Ingresar</button>
         <br>
         <button (click)="signUp()">Registrarse</button>
     </form>
