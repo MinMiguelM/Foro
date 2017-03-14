@@ -17,20 +17,26 @@ a {
     text-align: center;
     color: #eee;
     height: 60px;
-    width: 80%;
+    width: 90%;
     background-color: #607D8B;
     border-radius: 2px;
     border-style:double;
     display: inline-block;
 }
-.label-number{
-    width:10%;
+.show{
+    width:4%;
+    font-size:0%; 
+    font-family: arial;   
     float:left;
     font-size: 35px;
+    background-color: gray !important;
+    color:white;
+    border: none;
+    
 }
-.comment:hover {
-    background-color: #EEE;
-    color: #607d8b;
+.show:hover{
+    background-color: white !important;
+    color:gray;
 }
 .new{
     border-style: dashed;

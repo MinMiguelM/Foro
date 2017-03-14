@@ -1,10 +1,13 @@
 <a (click)="goBack()" class="back"><< Volver</a>
 <div class="topic">
-    <a *ngFor="let u of users; let i = index" (click)="test()">
-        <div class="comment-container">
-            <h4 class="label-number">{{i+1}}.</h4>
+    <ol *ngFor="let u of comments; let i = index" >
+        <div class="comment-container">  
             <div class="comment">
-                <h4>{{u}}</h4>
+                <button class="show" (click) = "showAll(u.usuario)">></button>
+                <h4>{{u.usuario}}</h4>
+                <div *ngIf = "u.mostrar">
+                    <h4>{{u.contenido}}</h4>
+                </div>
             </div>
             <div class="points-buttons">
                 <button class="point"
@@ -13,6 +16,6 @@
                         (click)="down(topic); $event.stopPropagation()">-</button>
             </div>
         </div>
-    </a>
+    </ol>
 </div>
 

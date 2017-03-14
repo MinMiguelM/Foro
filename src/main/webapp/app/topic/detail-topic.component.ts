@@ -16,24 +16,39 @@ export class DetailTopicComponent implements OnInit{
     ) { }
 
     comments: Array<Object> = new Array();
-    newcomment={usuario:"Felipe87",contenido:"Comentario viejo sobre pendejadas",puntos:30};
+    newcomment1={usuario:"Felipe87",contenido:"Comentario viejo sobre pendejadas 1",puntos:30,mostrar:false};
+    newcomment2={usuario:"USarios13",contenido:"Comentario viejo sobre pendejadas 2",puntos:40,mostrar:false};
+    newcomment3={usuario:"USarios13",contenido:"Comentario viejo sobre pendejadas 3",puntos:78,mostrar:false};
+    newcomment4={usuario:"kjd3",contenido:"Comentario viejo sobre pendejadas 4",puntos:20,mostrar:false};
+    newcomment5={usuario:"MM95",contenido:"Comentario viejo sobre pendejadas 5",puntos:76,mostrar:false};
     ngOnInit(): void {
-        this.comments.push(Object.assign({},this.newcomment));
+        this.comments.push(Object.assign({},this.newcomment1));
+        this.comments.push(Object.assign({},this.newcomment2));
+        this.comments.push(Object.assign({},this.newcomment3));
+        this.comments.push(Object.assign({},this.newcomment4));
+        this.comments.push(Object.assign({},this.newcomment5));
     }
     
     goBack(): void{
         this.location.back();
     }
-    users:Array<string> = ['USarios13','usuari34','kjd3'];
-    //comments:Array<string> = ['Comentario viejo sobre pendejadas','Comentario viejo sobre pendejadas','Comentario viejo sobre pendejadas'];
-   
-   // cuando se usa this, el objeto debe ser llamado desde una función
-   // si quiere que sea al cargar el componente, ponerlo en el ngOnInit
     
-    test(){
-        console.log(this.comments[0].usuario);
+    showAll(nombre:string){
+     for(var i=0; i<this.comments.length;i++)
+        {
+            if(nombre==this.comments[i].usuario)
+            {
+                console.log(this.comments[i].usuario);
+               //return false;
+               if(this.comments[i].mostrar==false)
+                this.comments[i].mostrar = true;
+               else
+                this.comments[i].mostrar=false;
+            }
+        }
+        /*console.log(this.comments[0].usuario);
         console.log(this.comments[0].contenido);
-        console.log(this.comments[0].puntos);
+        console.log(this.comments[0].puntos);*/
     }
     
 }
