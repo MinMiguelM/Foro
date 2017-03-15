@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Location} from '@angular/common';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
     moduleId: module.id,
@@ -9,9 +10,16 @@ import {Location} from '@angular/common';
 })
 export class NewForumComponent {
 
+    inputForm: FormGroup;
+
     constructor(
-        private location: Location
-    ){}
+        private location: Location,
+        private formBuilder: FormBuilder
+    ){
+        this.inputForm = this.formBuilder.group({
+            forumName: new FormControl('',Validators.required)
+        });
+    }
 
     create(){
 

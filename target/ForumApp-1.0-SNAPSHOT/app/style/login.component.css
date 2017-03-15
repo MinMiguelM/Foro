@@ -31,7 +31,14 @@
     margin:auto;
     display:block;
 }
-.login button:hover {
+.login button:hover:enabled {
     background-color: deepskyblue;
     color: white;
+}
+.login button:disabled{
+    background-color: lightgray;
+}
+.errorMsg{
+    color:red;
+    font-weight: bold;
 }

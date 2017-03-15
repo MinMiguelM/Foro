@@ -2,17 +2,18 @@
     <form [formGroup]="inputForm" novalidate>
         <h1>REGISTRO</h1>
         <label for="usernameLabel">Nombre de usuario: </label>
-        <input type="text" id="usernameLabel" name="username" formControlName="username">
+        <input type="text" id="usernameLabel" name="username" formControlName="username" [(ngModel)]="username">
         <div class="errorMsg" *ngIf="inputForm.get('username').touched && inputForm.get('username').status === 'INVALID'">Nombre de usuario es requerido</div>
         <br>
         <label for="passwordLabel">Contraseña: </label>
-        <input type="password" id="passwordLabel" name ="password" formControlName="password">
+        <input type="password" id="passwordLabel" name ="password" formControlName="password" [(ngModel)]="password">
         <div class="errorMsg" *ngIf="inputForm.get('password').touched && inputForm.get('password').status === 'INVALID'">Contraseña mínimo 8 caracteres</div>
         <br>
         <label for="repeatPasswordLabel">Repita Contraseña: </label>
         <input type="password" id="repeatPasswordLabel" name ="repeatPassword" formControlName="rPassword">
         <div class="errorMsg" *ngIf="inputForm.get('rPassword').touched && inputForm.get('rPassword').status === 'INVALID'">Contraseñas no concuerdan</div>
         <br><br>
-        <button [disabled]="!inputForm.valid || !inputForm.touched" (click)="logIn()">Registrarse</button>
+        <br><br>
+        <button [disabled]="!inputForm.valid || !inputForm.touched" (click)="signUp()">Registrarse</button>
     </form>
 </div>

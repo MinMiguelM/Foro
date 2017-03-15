@@ -1,8 +1,9 @@
 <div class="new-forum">
-    <form>
+    <form [formGroup]="inputForm" novalidate>
         <h1>Nuevo foro</h1>
         <label for="forumLabel">Nombre del foro: </label>
-        <input type="text" id="forumLabel" name="forumName">
+        <input type="text" id="forumLabel" name="forumName" formControlName="forumName">
+        <div class="errorMsg" *ngIf="inputForm.get('forumName').touched && inputForm.get('forumName').status === 'INVALID'">Nombre de foro requerido</div>
         <br><br>
         <label for="type">Moderación: </label>
         <select id="type" class="box">
@@ -11,7 +12,7 @@
         </select>
         <br>
         <div class="buttons">
-            <button (click)="create()">Crear</button>
+            <button [disabled]="!inputForm.valid || !inputForm.touched" (click)="create()">Crear</button>
             <br>
             <button (click)="cancel()">Cancelar</button>
         </div>

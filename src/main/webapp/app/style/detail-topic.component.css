@@ -38,9 +38,6 @@ a {
     background-color: white !important;
     color:gray;
 }
-.new{
-    border-style: dashed;
-}
 .points-buttons{
     float:right;
 }
@@ -60,4 +57,20 @@ a {
 .point:hover{
     background-color: white !important;
     color:gray;
+}
+:host >>> div{
+    border:solid;
+    border-width: 2px;
+    margin-left:10px;
+    margin-bottom: 5px;
+    width:98%;
+}
+:host >>> span{
+    color:gray;
+    float:left;
+}
+:host >>> h5{
+    margin-top:0;
+    text-align: right;
+    display: block;
 }

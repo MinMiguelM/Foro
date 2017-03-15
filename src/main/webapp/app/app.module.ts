@@ -16,6 +16,9 @@ import {DetailTopicComponent} from './topic/detail-topic.component';
 import { NewForumComponent } from './forum/new-forum.component';
 import { NewTopicComponent } from './topic/new-topic.component';
 
+// Services
+import {UserService} from './service/user.service';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -39,7 +42,8 @@ import { NewTopicComponent } from './topic/new-topic.component';
     providers: [{
         provide: LocationStrategy, 
         useClass: HashLocationStrategy
-    }],
+    },
+        UserService],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

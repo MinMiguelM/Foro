@@ -1,21 +1,8 @@
 <a (click)="goBack()" class="back"><< Volver</a>
 <div class="topic">
-    <ol *ngFor="let u of comments; let i = index" >
-        <div class="comment-container">  
-            <div class="comment">
-                <button class="show" (click) = "showAll(u.usuario)">></button>
-                <h4>{{u.usuario}}</h4>
-                <div *ngIf = "u.mostrar">
-                    <h4>{{u.contenido}}</h4>
-                </div>
-            </div>
-            <div class="points-buttons">
-                <button class="point"
-                        (click)="up(topic); $event.stopPropagation()">+</button>
-                <button class="point"
-                        (click)="down(topic); $event.stopPropagation()">-</button>
-            </div>
-        </div>
-    </ol>
+    Contenido
+</div>
+<div class="topic" [innerHtml]="html">
+    
 </div>
 

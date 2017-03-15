@@ -1,13 +1,15 @@
 <div class="new-topic">
-    <form>
+    <form [formGroup]="inputForm" novalidate>
         <h1>Nuevo tema</h1>
         <label for="topicLabel">Nombre del nuevo tema: </label>
-        <input type="text" id="topicLabel" name="topicName">
+        <input type="text" id="topicLabel" name="topicName" formControlName="topicName">
+        <div class="errorMsg" *ngIf="inputForm.get('topicName').touched && inputForm.get('topicName').status === 'INVALID'">Nombre de tema requerido</div>
         <br> <br>
         <label for="topicContent">Contenido: </label>
-        <textarea class="contentArea" id="topicContent" type="text" name="content" ></textarea>
+        <textarea class="contentArea" id="topicContent" type="text" name="content" formControlName="topicContent"></textarea>
+        <div class="errorMsg" *ngIf="inputForm.get('topicContent').touched && inputForm.get('topicContent').status === 'INVALID'">Contenido requerido. Máx 300 caracteres.</div>
         <div class="buttons">
-            <button (click)="create()">Crear</button>
+            <button [disabled]="!inputForm.valid || !inputForm.touched" (click)="create()">Crear</button>
             <br>
             <button (click)="cancel()">Cancelar</button>
         </div>
