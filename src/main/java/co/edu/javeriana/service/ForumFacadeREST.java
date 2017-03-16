@@ -8,6 +8,7 @@ package co.edu.javeriana.service;
 import co.edu.javeriana.entities.Forum;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
@@ -24,7 +25,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author miguel
  */
-@Stateless
+@RequestScoped
 @Path("forum")
 public class ForumFacadeREST extends AbstractFacade<Forum> {
 
