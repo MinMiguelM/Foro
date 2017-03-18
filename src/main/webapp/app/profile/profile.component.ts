@@ -8,6 +8,13 @@ import { User } from '../model/user.model';
   styleUrls: ['../style/profile.component.css']
 })
 export class ProfileComponent{
+    user: User;
+    
+    constructor() {
+        var user = localStorage.getItem('USER');
+        this.user = JSON.parse(user);
+        console.log("Logging this.user.username of type user:", this.user.username);
+    }
     
     logout(){
       

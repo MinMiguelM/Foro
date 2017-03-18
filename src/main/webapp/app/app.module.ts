@@ -19,6 +19,8 @@ import { NewTopicComponent } from './topic/new-topic.component';
 // Services
 import {UserService} from './service/user.service';
 import { AuthService } from './service/auth.service';
+import { ForumService } from './service/forum.service';
+import { TopicService } from './service/topic.service';
 
 //Security
 import { AuthGuard } from './security/auth.guard';
@@ -49,6 +51,8 @@ import { AuthGuard } from './security/auth.guard';
     },
         UserService,
         AuthService,
+        ForumService,
+        TopicService,
         AuthGuard],
     bootstrap: [AppComponent]
 })

@@ -19,6 +19,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -42,7 +43,9 @@ public class AuthService {
     @Produces(MediaType.APPLICATION_JSON)
     public Users login(Users loginCredentials) {
         Users user = userStore.findByName(loginCredentials.getUsername());
-        // TAREA: Resolver problema de seguridad en este código            
+        
+        // TODO: cambiar el if por la siguiente linea. Se debe guardar la contraseña hashed en el userStore y en la DB
+        //if ( user != null && BCrypt.checkpw(loginCredentials.getPassword(), user.getPassword()) )
         if (user != null && loginCredentials.getPassword().equals(user.getPassword())) {
             HttpSession session = req.getSession();
             session.setAttribute("USER", user);

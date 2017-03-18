@@ -6,6 +6,8 @@
 package co.edu.javeriana.service;
 
 import co.edu.javeriana.entities.Forum;
+import co.edu.javeriana.entities.Topic;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
@@ -56,11 +58,29 @@ public class ForumFacadeREST extends AbstractFacade<Forum> {
         super.remove(super.find(id));
     }
 
-    @GET
+    /*@GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Forum find(@PathParam("id") Integer id) {
         return super.find(id);
+    }*/
+    
+    // TODO: mejorar esto
+    @GET
+    @Path("{id}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Topic> find(@PathParam("id") Integer id) {
+        TopicFacadeREST topicService = new TopicFacadeREST(this.getEntityManager());
+        List<Topic> topics = topicService.findAll();
+        List<Topic> topicsOfForum = new ArrayList<>();
+        System.out.println("topics list:" + topics.size());
+        for (Topic t : topics) {
+            if (t.getIdForum().getId().equals(id)) {
+                topicsOfForum.add(t);
+            }
+        }
+        System.out.println("topics of forum list:" + topics.size());
+        return topicsOfForum;
     }
 
     @GET

@@ -35,6 +35,11 @@ public class TopicFacadeREST extends AbstractFacade<Topic> {
     public TopicFacadeREST() {
         super(Topic.class);
     }
+    
+    public TopicFacadeREST(EntityManager em) {
+        super(Topic.class);
+        this.em = em;
+    }
 
     @POST
     @Override

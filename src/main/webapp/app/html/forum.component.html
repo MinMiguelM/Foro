@@ -1,12 +1,12 @@
 <div class="forums">
-    <a *ngFor="let forum of forums" [routerLink]="['/forum', 141512]" class="col-1-4">
+    <a *ngFor="let forum of forums" [routerLink]="['/forum', forum.id]" class="col-1-4">
         <div class="forum">
-            <h4>{{forum}}</h4>
+            <h4>{{forum.title}}</h4>
         </div>
     </a>
     <a class="col-1-4" (click)="addForum()">
         <div class="forum new">
-            <h4>nuevo</h4>
+            <h4>Nuevo</h4>
         </div>
     </a>
 </div>
