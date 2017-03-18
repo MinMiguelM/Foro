@@ -18,6 +18,10 @@ import { NewTopicComponent } from './topic/new-topic.component';
 
 // Services
 import {UserService} from './service/user.service';
+import { AuthService } from './service/auth.service';
+
+//Security
+import { AuthGuard } from './security/auth.guard';
 
 @NgModule({
     imports: [
@@ -43,7 +47,9 @@ import {UserService} from './service/user.service';
         provide: LocationStrategy, 
         useClass: HashLocationStrategy
     },
-        UserService],
+        UserService,
+        AuthService,
+        AuthGuard],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

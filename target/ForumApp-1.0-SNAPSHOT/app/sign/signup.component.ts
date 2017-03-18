@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { AppComponent } from '../app.component';
 import { Router } from '@angular/router';
 import {UserService} from '../service/user.service';
 import {User} from '../model/user.model';
@@ -21,7 +20,6 @@ export class SignupComponent{
     constructor(
         private formBuilder: FormBuilder,
         private service: UserService,
-        private app: AppComponent,
         private router: Router
     ){
         this.inputForm = this.formBuilder.group({
@@ -32,14 +30,12 @@ export class SignupComponent{
     }
 
     signUp(){
-        console.log(this.username + " " + this.password);
-        let role = new Role(1,'USER');
+        let role = new Role(3,'USER');
         let user = new User(undefined,this.username,this.password,role);
         this.service.create(user)
             .subscribe(
                 success => {
-                    this.router.navigate(['/forums']);
-                    this.app.logged=true;
+                    this.router.navigate(['/login']);
                 },
                 error => this.errorMessage = "Error"
             )

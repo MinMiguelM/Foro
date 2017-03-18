@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { AppComponent } from '../app.component';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../service/auth.service';
 
 @Component({
     moduleId: module.id,
@@ -11,11 +11,15 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 })
 export class LoginComponent {
     inputForm: FormGroup;
+
+    username: string;
+    password: string;
+    message: string;
     
     constructor(
         private router: Router, 
-        private app: AppComponent,
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
+        private service: AuthService
     ) { 
         this.inputForm = this.formBuilder.group({
             username: new FormControl('',Validators.required),
@@ -24,8 +28,15 @@ export class LoginComponent {
     }
 
     logIn(): void{
-        this.app.logged = true;
-        this.router.navigate(['/forums']);
+        console.log('login');
+        this.service.login(this.username,this.password)
+            .subscribe(
+                user => {
+                    localStorage.setItem('USER',JSON.stringify(user));
+                    this.router.navigate(['/forums']);
+                },
+                error => this.message = 'Credenciales incorrectas'
+            );
     }
 
     signUp(): void{

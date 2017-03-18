@@ -43,8 +43,8 @@ public class Users implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "ID")
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
     @Basic(optional = false)
     @NotNull
@@ -56,14 +56,15 @@ public class Users implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "PASSWORD")
     private String password;
+    //list of points.
     @ManyToMany(mappedBy = "usersList")
     private List<Topic> topicList;
-    @ManyToMany(mappedBy = "usersList1")
-    private List<Topic> topicList1;
+    @ManyToMany(mappedBy = "usersList")
+    private List<Forum> forumList;
     @ManyToMany(mappedBy = "usersList")
     private List<Comment> commentList;
     @OneToMany(mappedBy = "idUser")
-    private List<Topic> topicList2;
+    private List<Topic> myTopics;
     @JoinColumn(name = "ROLE", referencedColumnName = "ID")
     @ManyToOne
     private Role role;
@@ -117,12 +118,12 @@ public class Users implements Serializable {
     }
 
     @XmlTransient
-    public List<Topic> getTopicList1() {
-        return topicList1;
+    public List<Forum> getForumList() {
+        return forumList;
     }
 
-    public void setTopicList1(List<Topic> topicList1) {
-        this.topicList1 = topicList1;
+    public void setForumList(List<Forum> forumList) {
+        this.forumList = forumList;
     }
 
     @XmlTransient
@@ -135,12 +136,12 @@ public class Users implements Serializable {
     }
 
     @XmlTransient
-    public List<Topic> getTopicList2() {
-        return topicList2;
+    public List<Topic> getTopicList1() {
+        return myTopics;
     }
 
-    public void setTopicList2(List<Topic> topicList2) {
-        this.topicList2 = topicList2;
+    public void setTopicList1(List<Topic> topicList1) {
+        this.myTopics = topicList1;
     }
 
     public Role getRole() {

@@ -65,16 +65,11 @@ public class Topic implements Serializable {
     @Column(name = "DATE")
     @Temporal(TemporalType.DATE)
     private Date date;
-    @JoinTable(name = "USERXTOPIC", joinColumns = {
-        @JoinColumn(name = "ID_TOPIC", referencedColumnName = "ID")}, inverseJoinColumns = {
-        @JoinColumn(name = "ID_USER", referencedColumnName = "ID")})
-    @ManyToMany
-    private List<Users> usersList;
     @JoinTable(name = "POINTS_TOPIC", joinColumns = {
         @JoinColumn(name = "ID_TOPIC", referencedColumnName = "ID")}, inverseJoinColumns = {
         @JoinColumn(name = "ID_USER", referencedColumnName = "ID")})
     @ManyToMany
-    private List<Users> usersList1;
+    private List<Users> usersList;
     @JoinColumn(name = "ID_FORUM", referencedColumnName = "ID")
     @ManyToOne
     private Forum idForum;
@@ -143,15 +138,6 @@ public class Topic implements Serializable {
 
     public void setUsersList(List<Users> usersList) {
         this.usersList = usersList;
-    }
-
-    @XmlTransient
-    public List<Users> getUsersList1() {
-        return usersList1;
-    }
-
-    public void setUsersList1(List<Users> usersList1) {
-        this.usersList1 = usersList1;
     }
 
     public Forum getIdForum() {

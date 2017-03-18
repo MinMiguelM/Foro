@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from  './service/auth.service';
 
 @Component({
   moduleId: module.id,
@@ -7,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrls:['style/app.component.css']
 })
 export class AppComponent {
-  logged: boolean=false;
+  loggedIn: boolean=false;
+
+  constructor(
+    private service: AuthService
+  ){
+    this.service.isLoggedIn().subscribe(
+      logged => this.loggedIn = logged
+    );
+  }
 }

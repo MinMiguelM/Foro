@@ -13,6 +13,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -52,6 +55,11 @@ public class Forum implements Serializable {
     @NotNull
     @Column(name = "MODERATE")
     private Boolean moderate;
+    @JoinTable(name = "USERXFORUM", joinColumns = {
+        @JoinColumn(name = "ID_FORUM", referencedColumnName = "ID")}, inverseJoinColumns = {
+        @JoinColumn(name = "ID_USER", referencedColumnName = "ID")})
+    @ManyToMany
+    private List<Users> usersList;
     @OneToMany(mappedBy = "idForum")
     private List<Topic> topicList;
 
@@ -90,6 +98,15 @@ public class Forum implements Serializable {
 
     public void setModerate(Boolean moderate) {
         this.moderate = moderate;
+    }
+
+    @XmlTransient
+    public List<Users> getUsersList() {
+        return usersList;
+    }
+
+    public void setUsersList(List<Users> usersList) {
+        this.usersList = usersList;
     }
 
     @XmlTransient

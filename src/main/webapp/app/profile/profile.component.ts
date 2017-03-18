@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from '../model/user.model';
 
 @Component({
   moduleId: module.id,
@@ -7,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['../style/profile.component.css']
 })
 export class ProfileComponent{
-    nombre: string = "probando";
+    
+    logout(){
+      
+    }
 }

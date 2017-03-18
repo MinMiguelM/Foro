@@ -9,15 +9,18 @@ import { DetailTopicComponent } from './topic/detail-topic.component';
 import { NewForumComponent } from './forum/new-forum.component';
 import { NewTopicComponent } from './topic/new-topic.component';
 
+//Security
+import { AuthGuard } from './security/auth.guard';
+
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/forums', pathMatch: 'full' },
   { path: 'login',  component: LoginComponent },
-  { path: 'forums', component: ForumComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'forum/:id', component: TopicComponent },
-  { path: 'topic/:id', component: DetailTopicComponent},
-  { path: 'new_forum', component: NewForumComponent},
-  { path: 'new_topic', component: NewTopicComponent}
+  { path: 'forums', component: ForumComponent, canActivate:[AuthGuard] },
+  { path: 'signup', component: SignupComponent},
+  { path: 'forum/:id', component: TopicComponent, canActivate:[AuthGuard] },
+  { path: 'topic/:id', component: DetailTopicComponent, canActivate:[AuthGuard]},
+  { path: 'new_forum', component: NewForumComponent, canActivate:[AuthGuard]},
+  { path: 'new_topic', component: NewTopicComponent, canActivate:[AuthGuard]}
 ];
 
 @NgModule({

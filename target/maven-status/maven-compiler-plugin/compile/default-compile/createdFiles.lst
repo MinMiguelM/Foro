@@ -12,6 +12,9 @@ co/edu/javeriana/entities/Topic.class
 co/edu/javeriana/entities/Topic_.class
 co/edu/javeriana/entities/Comment_.class
 co/edu/javeriana/service/ForumFacadeREST.class
+co/edu/javeriana/service/AuthService.class
 co/edu/javeriana/service/TopicFacadeREST.class
 co/edu/javeriana/service/AbstractFacade.class
+co/edu/javeriana/security/AuthFilter$1.class
+co/edu/javeriana/security/AuthFilter.class
 co/edu/javeriana/entities/Role.class
