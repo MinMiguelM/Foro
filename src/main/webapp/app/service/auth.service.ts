@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AuthService  {
     baseURL = "http://localhost:8080/ForumApp/webresources/auth/";
-    loggedIn: boolean = false;
+    loggedIn: boolean;
     private logger = new Subject<boolean>();
 
     constructor(private http: Http) {
@@ -19,6 +19,7 @@ export class AuthService  {
         return this.http.post(url, {username: username, password: password})
             .map((res: Response) => {
                 this.loggedIn = true;
+                localStorage.setItem("LOGGED",'true');
                 this.logger.next(this.loggedIn);
                 return res.json()
             });
