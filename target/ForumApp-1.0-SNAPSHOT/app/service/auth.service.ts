@@ -32,15 +32,18 @@ export class AuthService  {
     logout(): Observable<string> {
         let url = this.baseURL + 'logout';
         return this.http.get(url)
-            .map((res: Response) => res.text());
+            .map((res: Response) => {
+                this.loggedIn = false;
+                localStorage.setItem("LOGGED",'false');
+                this.logger.next(this.loggedIn);
+                return res.text();
+            });
     }
      
     loggedUsername() : Observable<string> {
         let url = this.baseURL + 'logged-username';
         return this.http.get(url)
             .map((res: Response) => {
-                this.loggedIn = false;
-                this.logger.next(this.loggedIn);
                 return res.text()
             });
     }

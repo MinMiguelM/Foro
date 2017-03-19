@@ -3,6 +3,9 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Location }               from '@angular/common';
 import {Router} from '@angular/router';
 
+import { TopicService } from '../service/topic.service';
+import { Topic } from '../model/topic.model';
+
 @Component({
     moduleId: module.id,
     selector: 'topic',
@@ -10,19 +13,31 @@ import {Router} from '@angular/router';
     styleUrls:['../style/topic.component.css']
 })
 export class TopicComponent implements OnInit{
-    //forum
+    topics: Array<Topic> = [];
+    message: string;
 
     constructor(
-        private route: ActivatedRoute,
+        private activatedRoute: ActivatedRoute,
         private location: Location, 
-        private router: Router
-    ) {}
+        private router: Router,
+        private topicService: TopicService
+    ) {
+    
+        console.log("routes");
+        console.log(activatedRoute); // array of states
+        console.log("ForumID:", activatedRoute.url.value[1].path);
+        this.topicService.getTopics(activatedRoute.url.value[1].path)
+            .subscribe(
+                topics => {
+                    this.topics = topics;
+                },
+                error => this.message = 'No tienes permisos para ver esta página'
+            );
+    }
 
     ngOnInit(): void {
         // get topics of a forum with id {id} at params of route
     }
-
-    topics:Array<string> = ['Topic1','Topic2','Topic3','Topic4','Topic5'];
 
     addTopic():void{
         this.router.navigate(['/new_topic']);

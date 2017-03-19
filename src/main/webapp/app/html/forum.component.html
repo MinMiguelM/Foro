@@ -5,7 +5,7 @@
         </div>
     </a>
     <a class="col-1-4" (click)="addForum()">
-        <div class="forum new">
+        <div *ngIf = "user.role.name=='ADMIN'" class="forum new">
             <h4>Nuevo</h4>
         </div>
     </a>

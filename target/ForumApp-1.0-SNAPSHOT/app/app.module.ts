@@ -19,9 +19,12 @@ import { NewTopicComponent } from './topic/new-topic.component';
 // Services
 import {UserService} from './service/user.service';
 import { AuthService } from './service/auth.service';
+import { ForumService } from './service/forum.service';
+import { TopicService } from './service/topic.service';
 
 //Security
 import { AuthGuard } from './security/auth.guard';
+import {CreateForumGuard} from './security/create-forum.guard';
 
 @NgModule({
     imports: [
@@ -49,7 +52,10 @@ import { AuthGuard } from './security/auth.guard';
     },
         UserService,
         AuthService,
-        AuthGuard],
+        ForumService,
+        TopicService,
+        AuthGuard,
+        CreateForumGuard],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

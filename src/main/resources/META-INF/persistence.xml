@@ -2,12 +2,7 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="co.edu.javeriana_ForumApp_war_1.0-SNAPSHOTPU" transaction-type="JTA">
     <jta-data-source>java:app/forumApp</jta-data-source>
-    <class>co.edu.javeriana.entities.Comment</class>
-    <class>co.edu.javeriana.entities.Forum</class>
-    <class>co.edu.javeriana.entities.Role</class>
-    <class>co.edu.javeriana.entities.Topic</class>
-    <class>co.edu.javeriana.entities.Users</class>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
       <property name="javax.persistence.sql-load-script-source" value="META-INF/init.sql"/>

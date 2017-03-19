@@ -2,6 +2,7 @@
 /home/miguel/NetBeansProjects/ForumApp/src/main/java/co/edu/javeriana/service/TopicFacadeREST.java
 /home/miguel/NetBeansProjects/ForumApp/src/main/java/co/edu/javeriana/entities/Forum.java
 /home/miguel/NetBeansProjects/ForumApp/src/main/java/co/edu/javeriana/service/ForumFacadeREST.java
+/home/miguel/NetBeansProjects/ForumApp/src/main/java/org/mindrot/jbcrypt/BCrypt.java
 /home/miguel/NetBeansProjects/ForumApp/src/main/java/co/edu/javeriana/service/CommentFacadeREST.java
 /home/miguel/NetBeansProjects/ForumApp/src/main/java/co/edu/javeriana/entities/Users.java
 /home/miguel/NetBeansProjects/ForumApp/src/main/java/co/edu/javeriana/service/UsersFacadeREST.java

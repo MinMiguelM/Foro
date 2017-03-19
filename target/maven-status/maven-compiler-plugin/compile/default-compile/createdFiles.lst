@@ -11,6 +11,7 @@ co/edu/javeriana/entities/Forum.class
 co/edu/javeriana/entities/Topic.class
 co/edu/javeriana/entities/Topic_.class
 co/edu/javeriana/entities/Comment_.class
+org/mindrot/jbcrypt/BCrypt.class
 co/edu/javeriana/service/ForumFacadeREST.class
 co/edu/javeriana/service/AuthService.class
 co/edu/javeriana/service/TopicFacadeREST.class

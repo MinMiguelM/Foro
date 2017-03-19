@@ -8,7 +8,6 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class TopicService  {
     baseURL = "http://localhost:8080/ForumApp/webresources/forum/";
-    private logger = new Subject<boolean>();
 
     constructor(private http: Http) {
     }
