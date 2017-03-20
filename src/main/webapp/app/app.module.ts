@@ -22,7 +22,6 @@ import {UserService} from './service/user.service';
 import { AuthService } from './service/auth.service';
 import { ForumService } from './service/forum.service';
 import { TopicService } from './service/topic.service';
-import { SharedService } from './service/shared.service';
 
 //Security
 import { AuthGuard } from './security/auth.guard';
@@ -57,7 +56,6 @@ import {CreateForumGuard} from './security/create-forum.guard';
         AuthService,
         ForumService,
         TopicService,
-        SharedService,
         AuthGuard,
         CreateForumGuard],
     bootstrap: [AppComponent]

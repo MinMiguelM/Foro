@@ -3,7 +3,6 @@ import {Router} from '@angular/router';
 import {ForumService} from '../service/forum.service';
 import { Forum } from '../model/forum.model';
 import {User} from '../model/user.model';
-import { SharedService } from '../service/shared.service';
 
 @Component({
     moduleId: module.id,
@@ -19,8 +18,7 @@ export class ForumComponent {
     
     constructor(
         private router: Router,
-        private forumService: ForumService,
-        private shared: SharedService
+        private forumService: ForumService
     ){
         let user = localStorage.getItem('USER');
         this.user = JSON.parse(user);

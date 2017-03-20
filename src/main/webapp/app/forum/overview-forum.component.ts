@@ -1,6 +1,5 @@
 import { Component,Input } from '@angular/core';
 import { Forum } from '../model/forum.model';
-import { SharedService } from '../service/shared.service';
 
 @Component({
   moduleId: module.id,
@@ -11,9 +10,7 @@ import { SharedService } from '../service/shared.service';
 export class OverviewForumComponent{
     forum:Forum;
 
-    constructor(
-        private shared: SharedService
-    ){ 
+    constructor(){ 
         this.forum = JSON.parse(localStorage.getItem('CUR_FORUM'));
      }
 }
