@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {ForumService} from '../service/forum.service';
 import { Forum } from '../model/forum.model';
 import {User} from '../model/user.model';
+import { SharedService } from '../service/shared.service';
 
 @Component({
     moduleId: module.id,
@@ -11,14 +12,15 @@ import {User} from '../model/user.model';
     styleUrls:['../style/forum.component.css']
 })
 export class ForumComponent {
-    //forums:Array<string> = ['Forum1','Forum2','Forum3','Forum4','Forum5'];
     forums:Array<Forum> = [];
     message: string;
     user:User;
+    forum:Forum;
     
     constructor(
         private router: Router,
-        private forumService: ForumService
+        private forumService: ForumService,
+        private shared: SharedService
     ){
         let user = localStorage.getItem('USER');
         this.user = JSON.parse(user);
@@ -34,5 +36,11 @@ export class ForumComponent {
 
     addForum():void{
         this.router.navigate(['/new_forum']);
+    }
+
+    goTo(forum: Forum):void{
+        this.forum = forum;
+        localStorage.setItem('CUR_FORUM',JSON.stringify(this.forum));
+        this.router.navigate(['/forum',forum.id]);
     }
 }

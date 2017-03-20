@@ -15,12 +15,14 @@ import {TopicComponent} from './topic/topic.component';
 import {DetailTopicComponent} from './topic/detail-topic.component';
 import { NewForumComponent } from './forum/new-forum.component';
 import { NewTopicComponent } from './topic/new-topic.component';
+import { OverviewForumComponent } from './forum/overview-forum.component';
 
 // Services
 import {UserService} from './service/user.service';
 import { AuthService } from './service/auth.service';
 import { ForumService } from './service/forum.service';
 import { TopicService } from './service/topic.service';
+import { SharedService } from './service/shared.service';
 
 //Security
 import { AuthGuard } from './security/auth.guard';
@@ -44,6 +46,7 @@ import {CreateForumGuard} from './security/create-forum.guard';
         DetailTopicComponent,
         NewForumComponent,
         NewTopicComponent,
+        OverviewForumComponent,
         AppComponent
     ],
     providers: [{
@@ -54,6 +57,7 @@ import {CreateForumGuard} from './security/create-forum.guard';
         AuthService,
         ForumService,
         TopicService,
+        SharedService,
         AuthGuard,
         CreateForumGuard],
     bootstrap: [AppComponent]
