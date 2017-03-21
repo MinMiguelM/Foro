@@ -11,6 +11,7 @@ import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -44,7 +45,9 @@ public class TopicFacadeREST extends AbstractFacade<Topic> {
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Transactional
     public void create(Topic entity) {
+        System.out.println("co.edu.javeriana.service.TopicFacadeREST.create()------------------------------------------");
         super.create(entity);
     }
 

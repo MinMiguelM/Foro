@@ -4,6 +4,7 @@ import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs/Rx';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import {Topic} from '../model/topic.model';
 
 @Injectable()
 export class TopicService  {

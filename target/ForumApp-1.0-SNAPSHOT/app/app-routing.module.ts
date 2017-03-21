@@ -21,7 +21,8 @@ const routes: Routes = [
   { path: 'forum/:id', component: TopicComponent, canActivate:[AuthGuard] },
   { path: 'topic/:id', component: DetailTopicComponent, canActivate:[AuthGuard]},
   { path: 'new_forum', component: NewForumComponent, canActivate:[AuthGuard,CreateForumGuard]},
-  { path: 'new_topic', component: NewTopicComponent, canActivate:[AuthGuard]}
+  { path: 'new_topic/:id', component: NewTopicComponent, canActivate:[AuthGuard]}
+  //{ path: 'topic/:id/new_topic', component: NewTopicComponent, canActivate:[AuthGuard]}
 ];
 
 @NgModule({

@@ -22,6 +22,7 @@ export class ForumComponent {
     ){
         let user = localStorage.getItem('USER');
         this.user = JSON.parse(user);
+        
 
         this.forumService.getForums()
             .subscribe(
