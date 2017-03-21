@@ -24,6 +24,7 @@ import { AuthService } from './service/auth.service';
 import { ForumService } from './service/forum.service';
 import { TopicService } from './service/topic.service';
 import { NewTopicService } from './service/new-topic.service';
+import { CommentService } from './service/comment.service';
 
 //Security
 import { AuthGuard } from './security/auth.guard';
@@ -60,6 +61,7 @@ import {ModerateGuard} from './security/moderate.guard';
         AuthService,
         ForumService,
         TopicService,
+        CommentService,
         NewTopicService,
         AuthGuard,
         ModerateGuard,

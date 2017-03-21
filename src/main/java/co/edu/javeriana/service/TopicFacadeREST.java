@@ -5,6 +5,7 @@
  */
 package co.edu.javeriana.service;
 
+import co.edu.javeriana.entities.Comment;
 import co.edu.javeriana.entities.Topic;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -71,6 +72,17 @@ public class TopicFacadeREST extends AbstractFacade<Topic> {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Topic find(@PathParam("id") Integer id) {
         return super.find(id);
+    }
+    
+    @GET
+    @Path("{id}/unapproved")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Comment> findUnapproved(@PathParam("id") Integer id) {
+        List<Comment> results = em.createNamedQuery("Comment.findUnapprovedByTopic")
+                                    .setParameter("topic", id)
+                                    .getResultList();
+        
+        return results;
     }
 
     @GET

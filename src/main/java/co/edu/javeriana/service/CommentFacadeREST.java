@@ -56,11 +56,22 @@ public class CommentFacadeREST extends AbstractFacade<Comment> {
         super.remove(super.find(id));
     }
 
-    @GET
+    /*@GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Comment find(@PathParam("id") Integer id) {
         return super.find(id);
+    }*/
+    
+    @GET
+    @Path("{id}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Comment> findByTopic(@PathParam("id") Integer id) {
+        List<Comment> results = em.createNamedQuery("Comment.findByTopic")
+                                    .setParameter("topic", id)
+                                    .getResultList();
+        
+        return results;
     }
 
     @GET
