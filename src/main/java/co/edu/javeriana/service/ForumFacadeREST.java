@@ -8,11 +8,13 @@ package co.edu.javeriana.service;
 import co.edu.javeriana.entities.Forum;
 import co.edu.javeriana.entities.Topic;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -41,6 +43,7 @@ public class ForumFacadeREST extends AbstractFacade<Forum> {
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Transactional
     public void create(Forum entity) {
         super.create(entity);
     }
@@ -73,13 +76,36 @@ public class ForumFacadeREST extends AbstractFacade<Forum> {
         TopicFacadeREST topicService = new TopicFacadeREST(this.getEntityManager());
         List<Topic> topics = topicService.findAll();
         List<Topic> topicsOfForum = new ArrayList<>();
-        System.out.println("topics list:" + topics.size());
         for (Topic t : topics) {
             if (t.getIdForum().getId().equals(id)) {
+                if(t.getIdForum().getModerate() && t.getApproved())
+                    topicsOfForum.add(t);
+                else if(!t.getIdForum().getModerate())
+                    topicsOfForum.add(t);
+            }
+        }
+        topicsOfForum.sort(new Comparator<Topic>(){
+            @Override
+            public int compare(Topic o1, Topic o2) {
+                return o2.getPoints()-o1.getPoints();
+            }
+            
+        });
+        return topicsOfForum;
+    }
+    
+    @GET
+    @Path("{id}/unapproved")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Topic> findUnapproved(@PathParam("id") Integer id){
+        TopicFacadeREST topicService = new TopicFacadeREST(this.getEntityManager());
+        List<Topic> topics = topicService.findAll();
+        List<Topic> topicsOfForum = new ArrayList<>();
+        for (Topic t : topics) {
+            if (t.getIdForum().getId().equals(id) && !t.getApproved()) {
                 topicsOfForum.add(t);
             }
         }
-        System.out.println("topics of forum list:" + topics.size());
         return topicsOfForum;
     }
 

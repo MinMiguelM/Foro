@@ -8,7 +8,8 @@ export class Topic {
         public content:string,
         public points:number,
         public idForum:Forum,
-        public idUser:User
+        public idUser:User,
+        public approved:boolean
     ){
         idForum = new Forum();
         idUser = new User();

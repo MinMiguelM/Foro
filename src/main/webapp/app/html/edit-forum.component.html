@@ -1,0 +1,21 @@
+<a (click)="goBack()"><< Volver</a>
+<div class="topics">
+    <h2>Temas para aprobar</h2>
+    <h5 *ngIf="!topics">No hay temas en este momento.</h5>
+    <a *ngFor="let topic of topics">
+        <div class="topic-container">
+            <div class="topic">
+                <h4>{{topic.title}}</h4>
+            </div>
+            <div class="mod-buttons">
+                <button class="mod"
+                        (click)="approve(topic); $event.stopPropagation()">/</button>
+                <button class="mod"
+                        (click)="disapprove(topic); $event.stopPropagation()">X</button>
+            </div>
+        </div>
+    </a>
+</div>
+<div class="topics">
+    <h2>Moderadores del foro</h2>
+</div>

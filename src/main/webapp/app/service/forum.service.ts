@@ -5,11 +5,15 @@ import {Observable, Subject} from 'rxjs/Rx';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
+import {Forum} from '../model/forum.model';
+import {RestClient} from './rest-client';
+
 @Injectable()
-export class ForumService  {
+export class ForumService extends RestClient<Forum> {
     baseURL = "http://localhost:8080/ForumApp/webresources/forum/";
 
     constructor(private http: Http) {
+        super(http);
     }
     
     getForums(): Observable<string> {

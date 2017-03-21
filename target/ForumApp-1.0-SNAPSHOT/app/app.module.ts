@@ -16,6 +16,7 @@ import {DetailTopicComponent} from './topic/detail-topic.component';
 import { NewForumComponent } from './forum/new-forum.component';
 import { NewTopicComponent } from './topic/new-topic.component';
 import { OverviewForumComponent } from './forum/overview-forum.component';
+import { EditForumComponent } from './forum/edit-forum.component';
 
 // Services
 import {UserService} from './service/user.service';
@@ -27,6 +28,7 @@ import { NewTopicService } from './service/new-topic.service';
 //Security
 import { AuthGuard } from './security/auth.guard';
 import {CreateForumGuard} from './security/create-forum.guard';
+import {ModerateGuard} from './security/moderate.guard';
 
 @NgModule({
     imports: [
@@ -46,6 +48,7 @@ import {CreateForumGuard} from './security/create-forum.guard';
         DetailTopicComponent,
         NewForumComponent,
         NewTopicComponent,
+        EditForumComponent,
         OverviewForumComponent,
         AppComponent
     ],
@@ -59,6 +62,7 @@ import {CreateForumGuard} from './security/create-forum.guard';
         TopicService,
         NewTopicService,
         AuthGuard,
+        ModerateGuard,
         CreateForumGuard],
     bootstrap: [AppComponent]
 })

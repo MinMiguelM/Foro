@@ -54,12 +54,14 @@ public class TopicFacadeREST extends AbstractFacade<Topic> {
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Transactional
     public void edit(@PathParam("id") Integer id, Topic entity) {
         super.edit(entity);
     }
 
     @DELETE
     @Path("{id}")
+    @Transactional
     public void remove(@PathParam("id") Integer id) {
         super.remove(super.find(id));
     }

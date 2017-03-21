@@ -1,0 +1,50 @@
+.topics{
+    border:.5px solid white;
+    background:lightgray;
+    border-radius:10px;
+    box-shadow:0px 0px 10px #000;
+    padding:15px;
+    margin:auto;
+    margin-top:2%;
+    width:100%;
+    overflow: hidden;
+}
+a {
+    text-decoration: none;
+    cursor:pointer;
+}
+.topic{
+    padding: 6px;
+    text-align: center;
+    color: #eee;
+    height: 60px;
+    width: 80%;
+    background-color: #607D8B;
+    border-radius: 2px;
+    border-style:double;
+    display: inline-block;
+}
+.topic:hover {
+    background-color: #EEE;
+    color: #607d8b;
+}
+.mod-buttons{
+    float:right;
+}
+.mod {
+    height: 50%;
+    width: 100%;
+    margin-top:6px;
+    background-color: gray !important;
+    color:white;
+    font-family: Arial;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    cursor: hand;
+    display: inline-block;
+}
+.mod:hover{
+    background-color: white !important;
+    color:gray;
+}

@@ -5,17 +5,29 @@ import {Observable, Subject} from 'rxjs/Rx';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import {Topic} from '../model/topic.model';
+import {RestClient} from './rest-client';
 
 @Injectable()
-export class TopicService  {
-    baseURL = "http://localhost:8080/ForumApp/webresources/forum/";
+export class TopicService extends RestClient<Topic> {
+    baseURL = "http://localhost:8080/ForumApp/webresources/topic/";
+    baseURLForum = "http://localhost:8080/ForumApp/webresources/forum/";
 
-    constructor(private http: Http) {
+    constructor(http: Http) {
+        super(http);
     }
+
     
     getTopics(forumId: string): Observable<string> {
-        let url = this.baseURL;
+        let url = this.baseURLForum;
         return this.http.get(url + forumId)
+            .map((res: Response) => {
+                return res.json()
+            });
+    }
+
+    getUnapprovedTopics(id:number):Observable<string>{
+        let url = this.baseURLForum + id + '/unapproved';
+        return this.http.get(url)
             .map((res: Response) => {
                 return res.json()
             });

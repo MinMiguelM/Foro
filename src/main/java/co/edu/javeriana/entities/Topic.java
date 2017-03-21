@@ -59,6 +59,8 @@ public class Topic implements Serializable {
     private String title;
     @Column(name = "POINTS")
     private Integer points;
+    @Column(name = "APPROVED")
+    private Boolean approved;
     @Size(max = 300)
     @Column(name = "CONTENT")
     private String content;
@@ -89,6 +91,14 @@ public class Topic implements Serializable {
     public Topic(Integer id, String title) {
         this.id = id;
         this.title = title;
+    }
+
+    public Boolean getApproved() {
+        return approved;
+    }
+
+    public void setApproved(Boolean approved) {
+        this.approved = approved;
     }
 
     public Integer getId() {

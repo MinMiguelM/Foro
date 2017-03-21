@@ -2,12 +2,12 @@
     <form [formGroup]="inputForm" novalidate>
         <h1>Nuevo foro</h1>
         <label for="forumLabel">Nombre del foro: </label>
-        <input type="text" id="forumLabel" name="forumName" formControlName="forumName">
+        <input type="text" id="forumLabel" name="forumName" formControlName="forumName" [(ngModel)]="forumName">
         <div class="errorMsg" *ngIf="inputForm.get('forumName').touched && inputForm.get('forumName').status === 'INVALID'">Nombre de foro requerido</div>
         <br><br>
         <label for="type">Moderación: </label>
-        <select id="type" class="box">
-            <option value="noModerate">No Moderado</option>
+        <select id="type" class="box" [(ngModel)]="moderate" [ngModelOptions]="{standalone: true}">
+            <option value="noModerate" >No Moderado</option>
             <option value="moderate">Moderado</option>
         </select>
         <br>
