@@ -23,6 +23,8 @@ export class EditForumComponent{
 
     usersList: Array<User>;
     moderators:Array<User>;
+
+    editable:boolean = false;
     
     constructor(
         private service:TopicService,
@@ -35,6 +37,10 @@ export class EditForumComponent{
         this.forum = JSON.parse(localStorage.getItem('CUR_FORUM'));
         this.getTopics();
         this.moderators = this.forum.usersList;
+
+        let user: User = JSON.parse(localStorage.getItem('USER'));
+        if(user.id == 1)
+            this.editable = true;
     }
 
     getTopics(){
@@ -100,6 +106,10 @@ export class EditForumComponent{
                     );
             }
         }
+    }
+
+    removeMod(user: User){
+        // remove from moderators
     }
 
     goBack(): void{

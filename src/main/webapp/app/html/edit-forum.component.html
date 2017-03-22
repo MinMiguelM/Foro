@@ -9,14 +9,14 @@
             </div>
             <div class="mod-buttons">
                 <button class="mod"
-                        (click)="approve(topic); $event.stopPropagation()">/</button>
+                        (click)="approve(topic); $event.stopPropagation()"><img width="18px" height="18px" src="ForumApp/app/imgs/approve.png" /></button>
                 <button class="mod"
-                        (click)="disapprove(topic); $event.stopPropagation()">X</button>
+                        (click)="disapprove(topic); $event.stopPropagation()"><img width="18px" height="18px" src="ForumApp/app/imgs/disapprove.png" /></button>
             </div>
         </div>
     </a>
 </div>
-<div class="topics">
+<div *ngIf="editable" class="topics">
     <h2>Moderadores del foro</h2>
     <h5 *ngIf="!moderators || moderators?.length == 0">No hay moderadores en este momento.</h5>
     <input type="text" [(ngModel)]="modNew"><a (click)="lookFor()"><img width="32px" height="32px" src="ForumApp/app/imgs/search.png"/></a>
@@ -33,9 +33,11 @@
         </div>
     </a>
     <br>----------------------------
-    <a *ngFor="let mod of moderators">
-        <div class="topic-container">
-            <h4>{{mod.username}}</h4>
-        </div>
-    </a>
+    <ul class="list">
+        <li *ngFor="let mod of moderators">
+            <span class="text"><strong>{{mod.username}}</strong></span>
+            <button class="delete"
+            (click)="delete(hero); $event.stopPropagation()">x</button>
+        </li>
+    </ul>
 </div>

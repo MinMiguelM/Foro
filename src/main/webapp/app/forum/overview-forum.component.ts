@@ -12,17 +12,19 @@ import { Router } from '@angular/router';
 export class OverviewForumComponent{
     forum:Forum;
     editable:boolean;
+    moderate:boolean = false;
     
     constructor(
       private router:Router
     ){ 
         this.forum = JSON.parse(localStorage.getItem('CUR_FORUM'));
         let user: User = JSON.parse(localStorage.getItem('USER'));
+        this.moderate = this.forum.moderate;
         if(user.role.id == 1)
           this.editable = true;
         else{
-          for(let i = 0;this.forum.usersList.length;i++){
-            if(user.username == this.forum.usersList[i].username){
+          for(let i = 0;i < this.forum.usersList.length;i++){
+            if(user.id == this.forum.usersList[i].id){
               this.editable = true;
               break;
             }
