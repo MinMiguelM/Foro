@@ -7,6 +7,7 @@ package co.edu.javeriana.service;
 
 import co.edu.javeriana.entities.Forum;
 import co.edu.javeriana.entities.Topic;
+import co.edu.javeriana.entities.Users;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -51,6 +52,7 @@ public class ForumFacadeREST extends AbstractFacade<Forum> {
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Transactional
     public void edit(@PathParam("id") Integer id, Forum entity) {
         super.edit(entity);
     }
@@ -60,6 +62,16 @@ public class ForumFacadeREST extends AbstractFacade<Forum> {
     public void remove(@PathParam("id") Integer id) {
         super.remove(super.find(id));
     }
+    
+//    @PUT
+//    @Path("update/{id}")
+//    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+//    @Transactional
+//    public void updateUsersList(@PathParam("id") Integer id){
+//        Forum forum = em.find(Forum.class, id);
+////        forum.getUsersList().add(entity);
+//        super.edit(forum);
+//    }
 
     /*@GET
     @Path("{id}")

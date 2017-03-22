@@ -20,7 +20,14 @@ export class OverviewForumComponent{
         let user: User = JSON.parse(localStorage.getItem('USER'));
         if(user.role.id == 1)
           this.editable = true;
-        // check si este usuario es moderador del foro o no.
+        else{
+          for(let i = 0;this.forum.usersList.length;i++){
+            if(user.username == this.forum.usersList[i].username){
+              this.editable = true;
+              break;
+            }
+          }
+        }
      }
 
      edit(){

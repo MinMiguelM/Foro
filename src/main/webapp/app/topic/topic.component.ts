@@ -40,7 +40,7 @@ export class TopicComponent implements OnInit{
     }
 
     addTopic():void{
-        this.router.navigate(['/forum',this.activatedRoute.url.value[1].path,'new_topic']);
+        this.router.navigate(['/forum',this.activatedRoute.url.value[1].path,'new']);
     }
 
     goBack(): void{

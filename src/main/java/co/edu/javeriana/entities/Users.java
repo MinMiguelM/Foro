@@ -8,12 +8,14 @@ package co.edu.javeriana.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -36,7 +38,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u")
     , @NamedQuery(name = "Users.findById", query = "SELECT u FROM Users u WHERE u.id = :id")
     , @NamedQuery(name = "Users.findByUsername", query = "SELECT u FROM Users u WHERE u.username = :username")
-    , @NamedQuery(name = "Users.findByPassword", query = "SELECT u FROM Users u WHERE u.password = :password")})
+    , @NamedQuery(name = "Users.findByPassword", query = "SELECT u FROM Users u WHERE u.password = :password")
+    , @NamedQuery(name = "Users.findLikeUsername", query = "SELECT u FROM Users u WHERE u.username like :username")})
 public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,11 +60,14 @@ public class Users implements Serializable {
     @Column(name = "PASSWORD")
     private String password;
     //list of points.
-    @ManyToMany(mappedBy = "usersList")
+    @ManyToMany(mappedBy = "usersList",cascade = CascadeType.PERSIST)
     private List<Topic> topicList;
-    @ManyToMany(mappedBy = "usersList")
+    @JoinTable(name = "USERXFORUM", joinColumns = {
+        @JoinColumn(name = "ID_USER", referencedColumnName = "ID")}, inverseJoinColumns = {
+        @JoinColumn(name = "ID_FORUM", referencedColumnName = "ID")})
+    @ManyToMany
     private List<Forum> forumList;
-    @ManyToMany(mappedBy = "usersList")
+    @ManyToMany(mappedBy = "usersList",cascade = CascadeType.PERSIST)
     private List<Comment> commentList;
     @OneToMany(mappedBy = "idUser")
     private List<Topic> myTopics;
@@ -108,7 +114,6 @@ public class Users implements Serializable {
         this.password = password;
     }
 
-    @XmlTransient
     public List<Topic> getTopicList() {
         return topicList;
     }

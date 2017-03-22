@@ -14,6 +14,12 @@ export class UserService extends RestClient<User> {
     constructor(http: Http) {
         super(http);
     }
+
+    findByUsername(username: string){
+        let url = this.baseURL + 'find-username/' + username;
+        return this.http.get(url)
+            .map((res: Response) => res.json());
+    }
 }
 
 

@@ -24,12 +24,25 @@ a {
     border-style:double;
     display: inline-block;
 }
-.topic:hover {
-    background-color: #EEE;
-    color: #607d8b;
+.topics input {
+    width: 90%;
+    line-height:2em;
+    border-radius:5px;
+    border:2px solid #f2f2f2;
 }
 .mod-buttons{
     float:right;
+}
+.userMod{
+    width: 100%;
+    background-color: gray !important;
+    color:white;
+    font-family: Arial;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    cursor: hand;
+    display: inline-block;
 }
 .mod {
     height: 50%;
@@ -45,6 +58,10 @@ a {
     display: inline-block;
 }
 .mod:hover{
+    background-color: white !important;
+    color:gray;
+}
+.userMod:hover{
     background-color: white !important;
     color:gray;
 }

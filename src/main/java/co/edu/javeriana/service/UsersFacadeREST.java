@@ -12,6 +12,7 @@ import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -70,9 +71,9 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     }
     
     @GET
-    @Path("/find-by-name/{userName}")
+    @Path("find-by-name/{userName}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Users findByName(@PathParam("username") String userName) {
+    public Users findByName(@PathParam("userName") String userName) {
         TypedQuery<Users> query = em.createNamedQuery("Users.findByUsername", Users.class);
         query.setParameter("username", userName);
         List<Users> results = query.getResultList();
@@ -81,6 +82,16 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
         } else {
             throw new WebApplicationException(Response.Status.UNAUTHORIZED);
         }
+    }
+    
+    @GET
+    @Path("find-username/{userName}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Users> findByLikeName(@PathParam("userName") String userName) {
+        Query query = em.createNamedQuery("Users.findLikeUsername");
+        query.setParameter("username", "%"+userName+"%");
+        List<Users> results = query.getResultList();
+        return results;
     }
 
     @GET

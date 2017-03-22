@@ -8,6 +8,7 @@ package co.edu.javeriana.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -55,10 +56,8 @@ public class Forum implements Serializable {
     @NotNull
     @Column(name = "MODERATE")
     private Boolean moderate;
-    @JoinTable(name = "USERXFORUM", joinColumns = {
-        @JoinColumn(name = "ID_FORUM", referencedColumnName = "ID")}, inverseJoinColumns = {
-        @JoinColumn(name = "ID_USER", referencedColumnName = "ID")})
-    @ManyToMany
+    
+    @ManyToMany(mappedBy = "forumList",cascade = CascadeType.MERGE)
     private List<Users> usersList;
     @OneToMany(mappedBy = "idForum")
     private List<Topic> topicList;
@@ -100,7 +99,6 @@ public class Forum implements Serializable {
         this.moderate = moderate;
     }
 
-    @XmlTransient
     public List<Users> getUsersList() {
         return usersList;
     }

@@ -1,7 +1,7 @@
 <a (click)="goBack()"><< Volver</a>
 <div class="topics">
     <h2>Temas para aprobar</h2>
-    <h5 *ngIf="!topics">No hay temas en este momento.</h5>
+    <h5 *ngIf="!topics || topics?.length == 0">No hay temas en este momento.</h5>
     <a *ngFor="let topic of topics">
         <div class="topic-container">
             <div class="topic">
@@ -18,4 +18,24 @@
 </div>
 <div class="topics">
     <h2>Moderadores del foro</h2>
+    <h5 *ngIf="!moderators || moderators?.length == 0">No hay moderadores en este momento.</h5>
+    <input type="text" [(ngModel)]="modNew"><a (click)="lookFor()"><img width="32px" height="32px" src="ForumApp/app/imgs/search.png"/></a>
+    <br>
+    <a *ngFor="let user of usersList">
+        <div class="topic-container">
+            <div class="topic">
+                <h4>{{user.username}}</h4>
+            </div>
+            <div class="mod-buttons">
+                <button class="userMod"
+                        (click)="addMod(user)">+</button>
+            </div>
+        </div>
+    </a>
+    <br>----------------------------
+    <a *ngFor="let mod of moderators">
+        <div class="topic-container">
+            <h4>{{mod.username}}</h4>
+        </div>
+    </a>
 </div>

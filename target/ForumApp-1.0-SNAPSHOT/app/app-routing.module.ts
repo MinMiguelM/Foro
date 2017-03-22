@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'forum/:id', component: TopicComponent, canActivate:[AuthGuard] },
   { path: 'topic/:id', component: DetailTopicComponent, canActivate:[AuthGuard]},
   { path: 'new_forum', component: NewForumComponent, canActivate:[AuthGuard,CreateForumGuard]},
-  { path: 'forum/:id/new_topic', component: NewTopicComponent, canActivate:[AuthGuard]},
+  { path: 'forum/:id/new', component: NewTopicComponent, canActivate:[AuthGuard]},
   { path: 'forum/:id/edit', component: EditForumComponent, canActivate:[AuthGuard,ModerateGuard]}
 ];
 
