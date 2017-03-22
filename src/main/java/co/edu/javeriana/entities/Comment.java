@@ -42,7 +42,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Comment.findByDate", query = "SELECT c FROM Comment c WHERE c.date = :date")
     , @NamedQuery(name = "Comment.findByContent", query = "SELECT c FROM Comment c WHERE c.content = :content")
     , @NamedQuery(name = "Comment.findByPoints", query = "SELECT c FROM Comment c WHERE c.points = :points")
-    , @NamedQuery(name = "Comment.findByTopic", query = "SELECT c FROM Comment c WHERE c.idTopic.id = :topic")
+    , @NamedQuery(name = "Comment.findByTopic", query = "SELECT c FROM Comment c WHERE c.idTopic.id = :topic and c.parent is NULL")
     , @NamedQuery(name = "Comment.findUnapprovedByTopic", query = "SELECT c FROM Comment c WHERE c.idTopic.id = :topic and c.approved = 0")
     , @NamedQuery(name = "Comment.findByApproved", query = "SELECT c FROM Comment c WHERE c.approved = :approved")})
 public class Comment implements Serializable {
@@ -137,7 +137,6 @@ public class Comment implements Serializable {
         this.usersList = usersList;
     }
 
-    @XmlTransient
     public List<Comment> getCommentList() {
         return commentList;
     }
@@ -146,6 +145,7 @@ public class Comment implements Serializable {
         this.commentList = commentList;
     }
 
+    @XmlTransient
     public Comment getParent() {
         return parent;
     }
