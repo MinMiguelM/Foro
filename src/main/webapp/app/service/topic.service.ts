@@ -24,6 +24,14 @@ export class TopicService extends RestClient<Topic> {
                 return res.json()
             });
     }
+    
+    getTopic(topicId: number) {
+        let url = this.baseURL;
+        return this.http.get(url + topicId)
+            .map((res: Response) => {
+                return res.json()
+            });
+    }
 
     getUnapprovedTopics(id:number):Observable<string>{
         let url = this.baseURLForum + id + '/unapproved';
