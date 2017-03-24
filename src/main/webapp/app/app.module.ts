@@ -17,6 +17,7 @@ import { NewForumComponent } from './forum/new-forum.component';
 import { NewTopicComponent } from './topic/new-topic.component';
 import { OverviewForumComponent } from './forum/overview-forum.component';
 import { EditForumComponent } from './forum/edit-forum.component';
+import { CommentComponent } from './comment/comment.component';
 
 // Services
 import {UserService} from './service/user.service';
@@ -43,6 +44,7 @@ import {ModerateGuard} from './security/moderate.guard';
         TopicComponent,
         LoginComponent,
         ForumComponent,
+        CommentComponent,
         ProfileComponent,
         SignupComponent,
         TopicComponent,

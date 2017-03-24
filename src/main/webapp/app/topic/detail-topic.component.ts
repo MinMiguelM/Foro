@@ -13,12 +13,11 @@ import {TopicService} from '../service/topic.service';
     styleUrls:['../style/detail-topic.component.css']
 })
 export class DetailTopicComponent implements OnInit{
-
-    html: string = '';
     allowedUser: boolean = false;
     //userId=1;
     message: string;
     topic: Topic = {};
+    comments: Array<Comment> = [];
     
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -27,7 +26,6 @@ export class DetailTopicComponent implements OnInit{
         private topicService: TopicService
     ) { }
 
-    comments: Array<Comment> = [];
     
     ngOnInit(): void {
         this.topicService.getTopic(this.activatedRoute.url.value[1].path)
@@ -43,9 +41,6 @@ export class DetailTopicComponent implements OnInit{
                 comments => {
                     this.comments = comments;
                     console.log(comments);
-                    for (var i = 0; i < this.comments.length;i++) {
-                        this.showComments(this.comments[i]);
-                    }
                 },
                 error => this.message = 'No tienes permisos para ver esta página'
             );
@@ -53,25 +48,6 @@ export class DetailTopicComponent implements OnInit{
     
     goBack(): void{
         this.location.back();
-    }
-    
-    commentHeader(comment): string {
-        return `<span>
-            por: ` + comment.idUser.username + ` &ensp;|&ensp; score: ` + comment.points + `
-        </span>
-        <h5>
-            <a href="#">upvote</a>&ensp;|&ensp;<a href="#">downvote</a>&ensp;|&ensp;<a href="#">editar</a>&ensp;|&ensp;<a href="#">responder</a>&ensp;|&ensp;<a href="/ForumApp#/forums">eliminar</a>
-        </h5>`
-    }
-
-    showComments(root: Comment){
-
-        //this is the parent.
-        this.html = this.html + `<div>`+ this.commentHeader(root) +`<p>`+root.content+`</p>`;
-        for(var i=0;i<root.commentList.length;i++){
-            this.showComments(root.commentList[i]);
-        }
-        this.html += `</div>`;
     }
     
 }

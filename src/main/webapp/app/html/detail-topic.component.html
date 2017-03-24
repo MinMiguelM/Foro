@@ -1,8 +1,7 @@
 <a (click)="goBack()" class="back"><< Volver</a>
-<div class="topic">
-    {{topic.content}}
+<div class="topic" [innerHtml]="topic.content">
 </div>
-<div class="topic" [innerHtml]="html">
-    
+<div class="topic">
+    <comment-list *ngFor="let c of comments" [comment]="c"></comment-list>
 </div>
 

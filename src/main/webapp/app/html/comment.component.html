@@ -1,0 +1,9 @@
+<div>
+<span>{{comment.idUser.username}} &ensp;|&ensp; score: {{comment.points}}</span>
+<h5><a href="#">upvote</a>&ensp;|&ensp;<a href="#">downvote</a>&ensp;|&ensp;<a href="#">editar</a>&ensp;|&ensp;<a href="#">responder</a>&ensp;|&ensp;<a href="/ForumApp#/forums">eliminar</a></h5>    
+<p>
+    {{comment.content}}
+    <br><br>
+    <comment-list *ngFor="let c of comment.commentList" [comment]="c"></comment-list>
+</p>
+</div>
