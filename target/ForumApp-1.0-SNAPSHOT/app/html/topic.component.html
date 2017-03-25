@@ -10,7 +10,7 @@
     </div>
     <a *ngFor="let topic of topics; let i = index" [routerLink]="['/topic', topic.id]">
         <div class="topic-container">
-            <h4 class="label-number">{{i+1}}.</h4>
+            <h4 class="label-number">{{i+1}}. <span class="points">{{topic.points}}</span></h4>
             <div class="topic">
                 <h4>{{topic.title}}</h4>
             </div>

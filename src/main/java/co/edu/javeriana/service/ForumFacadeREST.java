@@ -80,7 +80,6 @@ public class ForumFacadeREST extends AbstractFacade<Forum> {
         return super.find(id);
     }*/
     
-    // TODO: mejorar esto
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})

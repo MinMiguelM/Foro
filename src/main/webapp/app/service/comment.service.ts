@@ -10,7 +10,6 @@ import { RestClient } from './rest-client';
 @Injectable()
 export class CommentService extends RestClient<Comment> {
     baseURL = "http://localhost:8080/ForumApp/webresources/comment/";
-    baseURLTopic = "http://localhost:8080/ForumApp/webresources/topic/";
 
     constructor(http: Http) {
         super(http);
@@ -26,7 +25,7 @@ export class CommentService extends RestClient<Comment> {
     }
 
     getUnapprovedComments(topicId:number):Observable<string>{
-        let url = this.baseURLTopic + topicId + '/unapproved';
+        let url = this.baseURL + topicId + '/unapproved';
         return this.http.get(url)
             .map((res: Response) => {
                 return res.json()

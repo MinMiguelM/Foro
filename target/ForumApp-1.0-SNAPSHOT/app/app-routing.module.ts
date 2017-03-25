@@ -9,6 +9,7 @@ import { DetailTopicComponent } from './topic/detail-topic.component';
 import { NewForumComponent } from './forum/new-forum.component';
 import { NewTopicComponent } from './topic/new-topic.component';
 import { EditForumComponent } from './forum/edit-forum.component';
+import { EditTopicComponent } from './topic/edit-topic.component';
 
 //Security
 import { AuthGuard } from './security/auth.guard';
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: 'topic/:id', component: DetailTopicComponent, canActivate:[AuthGuard]},
   { path: 'new_forum', component: NewForumComponent, canActivate:[AuthGuard,CreateForumGuard]},
   { path: 'forum/:id/new', component: NewTopicComponent, canActivate:[AuthGuard]},
-  { path: 'forum/:id/edit', component: EditForumComponent, canActivate:[AuthGuard,ModerateGuard]}
+  { path: 'forum/:id/edit', component: EditForumComponent, canActivate:[AuthGuard,ModerateGuard]},
+  { path: 'topic/:id/edit', component: EditTopicComponent, canActivate:[AuthGuard,ModerateGuard]}
 ];
 
 @NgModule({

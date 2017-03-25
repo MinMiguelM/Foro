@@ -13,6 +13,10 @@ a {
     text-decoration: none;
     cursor:pointer;
 }
+.points{
+    color: gray;
+    font-size: 14px;
+}
 .topic{
     padding: 6px;
     text-align: center;

@@ -1,7 +1,16 @@
 <a (click)="goBack()" class="back"><< Volver</a>
-<div class="topic" [innerHtml]="topic.content">
-</div>
 <div class="topic">
+    <p [innerHTML]="topic.content"></p>
+    <h5><a (click)="enableComment()">Responder</a></h5>
+</div>
+<div *ngIf ="comments && comments.length > 0" class="topic">
     <comment-list *ngFor="let c of comments" [comment]="c"></comment-list>
 </div>
-
+<div *ngIf="reply" class="topic">
+    <form [formGroup]="inputForm" novalidate>
+        <label for="comment">Contenido: </label>
+        <textarea class="contentArea" id="comment" type="text" name="comment" formControlName="comment"[(ngModel)]="comment"></textarea>
+        <div class="errorMsg" *ngIf="inputForm.get('comment').touched && inputForm.get('comment').status === 'INVALID'">Contenido requerido. Máx 300 caracteres.</div>
+        <button [disabled]="!inputForm.valid || !inputForm.touched" (click)="creteReply()">Responder</button>
+    </form>
+</div>

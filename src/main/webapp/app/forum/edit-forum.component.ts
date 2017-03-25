@@ -16,6 +16,7 @@ import { ForumService } from '../service/forum.service';
 })
 export class EditForumComponent{
     topics:Array<Topic>;
+
     id:number
     forum:Forum;
 
@@ -108,8 +109,28 @@ export class EditForumComponent{
         }
     }
 
+    getPosModerators(id: number){
+        for(let i=0;i<this.forum.usersList.length;i++){
+            if(this.forum.usersList[i].id == id)
+                return i;
+        }
+        return -1;
+    }
+
     removeMod(user: User){
         // remove from moderators
+        let pos;
+        if((pos = this.getPosModerators(user.id)) >= 0){
+            this.forum.usersList.splice(pos,1);
+            this.forumService.edit(this.forum)
+                    .subscribe(
+                        success => {
+                            this.moderators = this.forum.usersList
+                            localStorage.setItem('CUR_FORUM',JSON.stringify(this.forum));
+                        },
+                        error => console.log(error)
+                    );
+        }
     }
 
     goBack(): void{

@@ -21,23 +21,19 @@
     <h5 *ngIf="!moderators || moderators?.length == 0">No hay moderadores en este momento.</h5>
     <input type="text" [(ngModel)]="modNew"><a (click)="lookFor()"><img width="32px" height="32px" src="ForumApp/app/imgs/search.png"/></a>
     <br>
-    <a *ngFor="let user of usersList">
-        <div class="topic-container">
-            <div class="topic">
-                <h4>{{user.username}}</h4>
-            </div>
-            <div class="mod-buttons">
-                <button class="userMod"
-                        (click)="addMod(user)">+</button>
-            </div>
-        </div>
-    </a>
+    <ul class="list">
+        <li *ngFor="let user of usersList">
+        <span class="text"><strong>{{user.username}}</strong></span>
+        <button class="delete"
+            (click)="addMod(user); $event.stopPropagation()">+</button>
+        </li>
+    </ul>
     <br>----------------------------
     <ul class="list">
         <li *ngFor="let mod of moderators">
             <span class="text"><strong>{{mod.username}}</strong></span>
             <button class="delete"
-            (click)="delete(hero); $event.stopPropagation()">x</button>
+            (click)="removeMod(mod); $event.stopPropagation()">x</button>
         </li>
     </ul>
 </div>

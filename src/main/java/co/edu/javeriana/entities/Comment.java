@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -72,13 +73,13 @@ public class Comment implements Serializable {
     @OneToMany(mappedBy = "parent")
     private List<Comment> commentList;
     @JoinColumn(name = "PARENT", referencedColumnName = "ID")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Comment parent;
     @JoinColumn(name = "ID_TOPIC", referencedColumnName = "ID")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Topic idTopic;
     @JoinColumn(name = "ID_USER", referencedColumnName = "ID")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Users idUser;
 
     public Comment() {

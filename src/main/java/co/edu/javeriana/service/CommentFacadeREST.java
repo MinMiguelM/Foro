@@ -6,11 +6,15 @@
 package co.edu.javeriana.service;
 
 import co.edu.javeriana.entities.Comment;
+import co.edu.javeriana.entities.Topic;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -39,6 +43,7 @@ public class CommentFacadeREST extends AbstractFacade<Comment> {
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Transactional
     public void create(Comment entity) {
         super.create(entity);
     }
@@ -46,12 +51,14 @@ public class CommentFacadeREST extends AbstractFacade<Comment> {
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Transactional
     public void edit(@PathParam("id") Integer id, Comment entity) {
         super.edit(entity);
     }
 
     @DELETE
     @Path("{id}")
+    @Transactional
     public void remove(@PathParam("id") Integer id) {
         super.remove(super.find(id));
     }
@@ -70,8 +77,23 @@ public class CommentFacadeREST extends AbstractFacade<Comment> {
         List<Comment> results = em.createNamedQuery("Comment.findByTopic")
                                     .setParameter("topic", id)
                                     .getResultList();
+        if(results != null && !results.get(0).getIdTopic().getIdForum().getModerate())
+            return results;
+        List<Comment> commentsApproved = new ArrayList<>();
+        for (Comment result : results) {
+            if(result.getApproved())
+                commentsApproved.add(result);
+        }
+        return commentsApproved;
+    }
+    
+    @GET
+    @Path("{id}/unapproved")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Comment> findUnapproved(@PathParam("id") Integer id){
+        Query query = em.createNamedQuery("Comment.findUnapprovedByTopic");
+        return (List<Comment>)query.setParameter("topic", id).getResultList();
         
-        return results;
     }
 
     @GET

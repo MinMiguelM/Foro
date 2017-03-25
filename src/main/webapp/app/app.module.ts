@@ -18,6 +18,7 @@ import { NewTopicComponent } from './topic/new-topic.component';
 import { OverviewForumComponent } from './forum/overview-forum.component';
 import { EditForumComponent } from './forum/edit-forum.component';
 import { CommentComponent } from './comment/comment.component';
+import { EditTopicComponent } from './topic/edit-topic.component';
 
 // Services
 import {UserService} from './service/user.service';
@@ -52,6 +53,7 @@ import {ModerateGuard} from './security/moderate.guard';
         NewForumComponent,
         NewTopicComponent,
         EditForumComponent,
+        EditTopicComponent,
         OverviewForumComponent,
         AppComponent
     ],

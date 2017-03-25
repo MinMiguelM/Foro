@@ -2,9 +2,11 @@ import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location }               from '@angular/common';
 import { Comment } from '../model/comment.model';
+import { User } from '../model/user.model';
 import { Topic } from '../model/topic.model';
 import {CommentService} from '../service/comment.service';
 import {TopicService} from '../service/topic.service';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
     moduleId: module.id,
@@ -14,18 +16,30 @@ import {TopicService} from '../service/topic.service';
 })
 export class DetailTopicComponent implements OnInit{
     allowedUser: boolean = false;
-    //userId=1;
+    user:User;
     message: string;
     topic: Topic = {};
     comments: Array<Comment> = [];
+    inputForm:FormGroup;
+    comment:string;
+    reply: boolean = false;
     
     constructor(
         private activatedRoute: ActivatedRoute,
         private location: Location,
         private commentService: CommentService,
-        private topicService: TopicService
-    ) { }
+        private topicService: TopicService,
+        private formBuilder: FormBuilder
+    ) {
+        this.inputForm = this.formBuilder.group({
+            comment: new FormControl('',Validators.compose([Validators.required,Validators.maxLength(300)]))
+        });
+        this.user = JSON.parse(localStorage.getItem('USER'));
+    }
 
+    enableComment(){
+        this.reply = true;
+    }
     
     ngOnInit(): void {
         this.topicService.getTopic(this.activatedRoute.url.value[1].path)
@@ -36,6 +50,14 @@ export class DetailTopicComponent implements OnInit{
                 },
                 error => this.message = 'No tienes permisos para ver esta página'
             );
+        this.refreshComments();
+    }
+    
+    goBack(): void{
+        this.location.back();
+    }
+
+    refreshComments(){
         this.commentService.getComments(this.activatedRoute.url.value[1].path)
             .subscribe(
                 comments => {
@@ -45,9 +67,19 @@ export class DetailTopicComponent implements OnInit{
                 error => this.message = 'No tienes permisos para ver esta página'
             );
     }
-    
-    goBack(): void{
-        this.location.back();
+
+    creteReply(){
+        let newComment: Comment = 
+            new Comment(undefined,new Array<Comment>(),null,false,this.comment,0,
+                this.user,this.topic);
+        this.commentService.create(newComment).
+            subscribe(
+                success => {
+                    this.reply = false;
+                    this.refreshComments();
+                },
+                error => console.log(error)
+            )
     }
     
 }

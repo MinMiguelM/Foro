@@ -1,0 +1,18 @@
+<a (click)="goBack()"><< Volver</a>
+<div class="topics">
+    <h2>Comentarios para aprobar</h2>
+    <h5 *ngIf="!comments || comments?.length == 0">No hay comentarios en este momento.</h5>
+    <a *ngFor="let comment of comments">
+        <div class="topic-container">
+            <div class="topic">
+                <h4>{{comment.content}}</h4>
+            </div>
+            <div class="mod-buttons">
+                <button class="mod"
+                        (click)="approve(comment); $event.stopPropagation()"><img width="18px" height="18px" src="ForumApp/app/imgs/approve.png" /></button>
+                <button class="mod"
+                        (click)="disapprove(comment); $event.stopPropagation()"><img width="18px" height="18px" src="ForumApp/app/imgs/disapprove.png" /></button>
+            </div>
+        </div>
+    </a>
+</div>
