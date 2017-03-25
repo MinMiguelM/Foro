@@ -5,6 +5,5 @@ Web app for Programación Web Class.
 
 Faltante:
 * Puntos en foros y comentarios.
-* Moderación de comentarios. Botón de editar y eliminar quitarlos.
-* Seguridad en pantallas de editar.
-* Botón de responder para los sub comentarios.
+* Botón de editar y eliminar en comentarios.
+* Mostrar usuario creador de tópico en detail-topic o en el overview
