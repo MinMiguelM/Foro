@@ -17,12 +17,12 @@ export class ModerateGuard implements CanActivate {
         {
             let user = localStorage.getItem('USER');
             this.user = JSON.parse(user);
-            if(this.user.role.name=='ADMIN'){
-                return true;
-            }
             this.forum = JSON.parse(localStorage.getItem('CUR_FORUM'));
-            if(this.forum && this.contain(this.user.id)){
-                return true;
+            if(this.forum && this.forum.moderate){
+                if(this.contain(this.user.id))
+                    return true;
+                if(this.user.role.name=='ADMIN')
+                    return true;
             }
             this.router.navigate(['/forums']);
         }

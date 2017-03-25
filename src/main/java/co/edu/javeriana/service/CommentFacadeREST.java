@@ -45,6 +45,13 @@ public class CommentFacadeREST extends AbstractFacade<Comment> {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @Transactional
     public void create(Comment entity) {
+        if(entity.getIdParent() >= 0){
+            Comment parent = (Comment) em.createNamedQuery("Comment.findById")
+                    .setParameter("id", entity.getIdParent())
+                    .getSingleResult();
+            entity.setParent(parent);
+            parent.getCommentList().add(entity);
+        }
         super.create(entity);
     }
 
@@ -53,6 +60,12 @@ public class CommentFacadeREST extends AbstractFacade<Comment> {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @Transactional
     public void edit(@PathParam("id") Integer id, Comment entity) {
+        if(entity.getIdParent() != null && entity.getIdParent() >= 0){
+            Comment parent = (Comment) em.createNamedQuery("Comment.findById")
+                    .setParameter("id", entity.getIdParent())
+                    .getSingleResult();
+            entity.setParent(parent);
+        }
         super.edit(entity);
     }
 
@@ -77,7 +90,9 @@ public class CommentFacadeREST extends AbstractFacade<Comment> {
         List<Comment> results = em.createNamedQuery("Comment.findByTopic")
                                     .setParameter("topic", id)
                                     .getResultList();
-        if(results != null && !results.get(0).getIdTopic().getIdForum().getModerate())
+        if(results != null 
+                && results.size() > 0 
+                && !results.get(0).getIdTopic().getIdForum().getModerate())
             return results;
         List<Comment> commentsApproved = new ArrayList<>();
         for (Comment result : results) {

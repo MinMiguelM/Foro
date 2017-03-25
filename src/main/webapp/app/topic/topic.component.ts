@@ -43,6 +43,11 @@ export class TopicComponent implements OnInit{
         this.router.navigate(['/forum',this.activatedRoute.url.value[1].path,'new']);
     }
 
+    goTo(topic : Topic){
+        localStorage.setItem('CUR_TOPIC',JSON.stringify(topic));
+        this.router.navigate(['/topic', topic.id]);
+    }
+
     goBack(): void{
         this.location.back();
     }

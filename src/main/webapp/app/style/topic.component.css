@@ -21,7 +21,7 @@ a {
     padding: 6px;
     text-align: center;
     color: #eee;
-    height: 60px;
+    overflow:hidden;
     width: 80%;
     background-color: #607D8B;
     border-radius: 2px;

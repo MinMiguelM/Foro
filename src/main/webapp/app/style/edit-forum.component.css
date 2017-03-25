@@ -17,12 +17,12 @@ a {
     padding: 6px;
     text-align: center;
     color: #eee;
-    height: 60px;
     width: 80%;
     background-color: #607D8B;
     border-radius: 2px;
     border-style:double;
     display: inline-block;
+    overflow:hidden;
 }
 .topics input {
     width: 90%;

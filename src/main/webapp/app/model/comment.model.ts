@@ -6,7 +6,7 @@ export class Comment{
     constructor(
         public id:number,
         public commentList:Array<Comment>,
-        public parent:Comment,
+        public idParent:number,
         public approved:boolean,
         public content:string,
         public points:number,

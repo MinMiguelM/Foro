@@ -8,7 +8,7 @@
             </div>
         </a>
     </div>
-    <a *ngFor="let topic of topics; let i = index" [routerLink]="['/topic', topic.id]">
+    <a *ngFor="let topic of topics; let i = index" (click)="goTo(topic)">
         <div class="topic-container">
             <h4 class="label-number">{{i+1}}. <span class="points">{{topic.points}}</span></h4>
             <div class="topic">

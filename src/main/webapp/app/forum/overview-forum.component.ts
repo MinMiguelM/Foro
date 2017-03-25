@@ -2,6 +2,7 @@ import { Component,Input } from '@angular/core';
 import { Forum } from '../model/forum.model';
 import { User } from '../model/user.model';
 import { Router } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -15,7 +16,8 @@ export class OverviewForumComponent{
     moderate:boolean = false;
     
     constructor(
-      private router:Router
+      private router:Router,
+      private activatedRoute: ActivatedRoute
     ){ 
         this.forum = JSON.parse(localStorage.getItem('CUR_FORUM'));
         let user: User = JSON.parse(localStorage.getItem('USER'));
@@ -33,6 +35,11 @@ export class OverviewForumComponent{
      }
 
      edit(){
-        this.router.navigate(['/forum',this.forum.id,'edit']);
+       if(this.router.url.match('/forum/')){
+          this.router.navigate(['/forum',this.forum.id,'edit']);
+       }else if(this.router.url.match('/topic/')){
+          let topic = JSON.parse(localStorage.getItem('CUR_TOPIC'));
+          this.router.navigate(['/topic',topic.id,'edit']);
+       }
      }
 }

@@ -23,6 +23,8 @@ export class DetailTopicComponent implements OnInit{
     inputForm:FormGroup;
     comment:string;
     reply: boolean = false;
+
+    parent:Comment;
     
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -37,8 +39,9 @@ export class DetailTopicComponent implements OnInit{
         this.user = JSON.parse(localStorage.getItem('USER'));
     }
 
-    enableComment(){
+    enableComment(parent:Comment){
         this.reply = true;
+        this.parent = parent;
     }
     
     ngOnInit(): void {
@@ -69,8 +72,9 @@ export class DetailTopicComponent implements OnInit{
     }
 
     creteReply(){
+        let parentId = this.parent?this.parent.id:-1;
         let newComment: Comment = 
-            new Comment(undefined,new Array<Comment>(),null,false,this.comment,0,
+            new Comment(undefined,new Array<Comment>(),parentId,false,this.comment,0,
                 this.user,this.topic);
         this.commentService.create(newComment).
             subscribe(

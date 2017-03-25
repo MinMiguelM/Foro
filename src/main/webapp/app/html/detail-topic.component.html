@@ -1,7 +1,7 @@
 <a (click)="goBack()" class="back"><< Volver</a>
 <div class="topic">
     <p [innerHTML]="topic.content"></p>
-    <h5><a (click)="enableComment()">Responder</a></h5>
+    <h5><a (click)="enableComment(null)">Responder</a></h5>
 </div>
 <div *ngIf ="comments && comments.length > 0" class="topic">
     <comment-list *ngFor="let c of comments" [comment]="c"></comment-list>
