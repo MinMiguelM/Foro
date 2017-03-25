@@ -1,5 +1,7 @@
 <a (click)="goBack()" class="back"><< Volver</a>
 <div class="topic">
+    <p [innerHTML]="topic.date"></p>
+    
     <p [innerHTML]="topic.content"></p>
     <h5><a (click)="enableComment(null)">Responder</a></h5>
 </div>

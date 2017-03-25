@@ -75,7 +75,7 @@ export class DetailTopicComponent implements OnInit{
         let parentId = this.parent?this.parent.id:-1;
         let newComment: Comment = 
             new Comment(undefined,new Array<Comment>(),parentId,false,this.comment,0,
-                this.user,this.topic);
+                this.user,this.topic,new Date());
         this.commentService.create(newComment).
             subscribe(
                 success => {

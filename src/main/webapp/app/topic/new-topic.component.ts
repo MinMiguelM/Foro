@@ -48,7 +48,7 @@ export class NewTopicComponent {
         console.log(this.topicContent);
       //  let forum = new Forum(1,'IAmA',false);
       //  let user = new User(2,'nombreprueba','1234',new Role(2,'MOD'));
-        let topic = new Topic(undefined,this.topicName,'2017-03-22',this.topicContent,0,new Forum(),new User(),false);// fecha queda en null
+        let topic = new Topic(undefined,this.topicName,new Date(),this.topicContent,0,new Forum(),new User(),false);// fecha queda en null
         topic.idForum.id=this.activatedRoute.url.value[1].path;
         topic.idUser.id=this.user.id;
         this.service.addTopic(topic)

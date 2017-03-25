@@ -11,7 +11,8 @@ export class Comment{
         public content:string,
         public points:number,
         public idUser:User,
-        public idTopic:Topic
+        public idTopic:Topic,
+        public date: Date
     ){}
 
     appendChild(comment: Comment){
