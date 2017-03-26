@@ -32,4 +32,20 @@ export class CommentService extends RestClient<Comment> {
             });
     }
 
+    addPoints(comment:Comment):Observable<string>{
+        let url = this.baseURL +'add-points/'+ comment.id;
+        return this.http.put(url,comment)
+            .map((res:Response) => {
+                return res.json()
+            });
+    }
+
+    removePoints(comment:Comment):Observable<string>{
+        let url = this.baseURL +'remove-points/'+ comment.id;
+        return this.http.put(url,comment)
+            .map((res:Response) => {
+                return res.json()
+            });
+    }
+
 }

@@ -30,17 +30,23 @@ export class TopicComponent implements OnInit{
         console.log("routes");
         console.log(activatedRoute); // array of states
         console.log("ForumID:", activatedRoute.url.value[1].path);
-        this.topicService.getTopics(activatedRoute.url.value[1].path)
+        this.getTopics();
+        let user = localStorage.getItem('USER');
+        this.user = JSON.parse(user);
+    }
+
+    ngOnInit(): void {
+        // get topics of a forum with id {id} at params of route
+    }
+
+    getTopics(){
+        this.topicService.getTopics(this.activatedRoute.url.value[1].path)
             .subscribe(
                 topics => {
                     this.topics = topics;
                 },
                 error => this.message = 'No tienes permisos para ver esta página'
             );
-    }
-
-    ngOnInit(): void {
-        // get topics of a forum with id {id} at params of route
     }
 
     addTopic():void{
@@ -56,10 +62,7 @@ export class TopicComponent implements OnInit{
         this.location.back();
     }
 
-    up (topic:Topic)
-    {
-        let user = localStorage.getItem('USER');
-        this.user = JSON.parse(user);
+    down(topic:Topic){
         let exist = false;
         for(  let i = 0; i < this.user.topicList.length; i++)
         {
@@ -74,18 +77,49 @@ export class TopicComponent implements OnInit{
         {
             console.log(" user didn´t point this");
             this.user.topicList.push(topic);
-            this.userService.editUser(this.user.id,this.user)
+            this.userService.edit(this.user)
                 .subscribe(
                 success => {
                     console.log('SE AGREGO!');
-                   // localStorage.setItem('USER',JSON.stringify(user)); se muere :(
-                       topic.points=topic.points+1;
-                       console.log("puntos !",topic.points);
-                       this.topicService.editTopic(topic.id,topic)
+                       localStorage.setItem('USER',JSON.stringify(this.user));
+                       this.topicService.removePoints(topic)
                        .subscribe(
                     success => {
-                        console.log('se aumento puntos ');
-                        
+                        this.getTopics();
+                    },
+                    error => console.log(error));
+                },
+                error => console.log(error)
+            );
+
+        }
+    }
+
+    up (topic:Topic)
+    {
+        let exist = false;
+        for(  let i = 0; i < this.user.topicList.length; i++)
+        {
+            //console.log("en usuario ahi : ", this.user.topicList[i].title);
+            if(topic.id==this.user.topicList[i].id)
+            {
+                console.log("user already point this topic");
+                exist = true;
+            }
+        }
+        if(!exist)
+        {
+            console.log(" user didn´t point this");
+            this.user.topicList.push(topic);
+            this.userService.edit(this.user)
+                .subscribe(
+                success => {
+                    console.log('SE AGREGO!');
+                       localStorage.setItem('USER',JSON.stringify(this.user));
+                       this.topicService.addPoints(topic)
+                       .subscribe(
+                    success => {
+                        this.getTopics();
                     },
                     error => console.log(error));
                 },

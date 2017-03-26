@@ -41,9 +41,17 @@ export class TopicService extends RestClient<Topic> {
             });
     }
 
-    editTopic(id:number,topic:Topic)
+    addPoints(topic:Topic):Observable<string>
     {
-        let url = this.baseURL + id;
+        let url = this.baseURL +'add-points/'+ topic.id;
+        return this.http.put(url,topic)
+            .map((res:Response) => {
+                return res.json()
+            });
+    }
+
+    removePoints(topic:Topic):Observable<string>{
+        let url = this.baseURL +'remove-points/'+ topic.id;
         return this.http.put(url,topic)
             .map((res:Response) => {
                 return res.json()

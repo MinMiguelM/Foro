@@ -60,14 +60,14 @@ public class Users implements Serializable {
     @Column(name = "PASSWORD")
     private String password;
     //list of points.
-    @ManyToMany(mappedBy = "usersList",cascade = CascadeType.PERSIST)
+    @ManyToMany(mappedBy = "usersList")
     private List<Topic> topicList;
     @JoinTable(name = "USERXFORUM", joinColumns = {
         @JoinColumn(name = "ID_USER", referencedColumnName = "ID")}, inverseJoinColumns = {
         @JoinColumn(name = "ID_FORUM", referencedColumnName = "ID")})
     @ManyToMany
     private List<Forum> forumList;
-    @ManyToMany(mappedBy = "usersList",cascade = CascadeType.PERSIST)
+    @ManyToMany(mappedBy = "usersList",cascade = CascadeType.REMOVE)
     private List<Comment> commentList;
     @OneToMany(mappedBy = "idUser")
     private List<Topic> myTopics;
@@ -131,7 +131,6 @@ public class Users implements Serializable {
         this.forumList = forumList;
     }
 
-    @XmlTransient
     public List<Comment> getCommentList() {
         return commentList;
     }

@@ -84,6 +84,26 @@ public class TopicFacadeREST extends AbstractFacade<Topic> {
         
         return results;
     }
+    
+    @PUT
+    @Path("add-points/{id}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Transactional
+    public void editPointsPlus(@PathParam("id") Integer id){
+        Topic topic = super.find(id);
+        topic.setPoints(topic.getPoints()+1);
+        super.edit(topic);
+    }
+    
+    @PUT
+    @Path("remove-points/{id}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Transactional
+    public void editPointsMinus(@PathParam("id") Integer id){
+        Topic topic = super.find(id);
+        topic.setPoints(topic.getPoints()-1);
+        super.edit(topic);
+    }
 
     @GET
     @Override

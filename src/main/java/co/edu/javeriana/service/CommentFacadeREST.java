@@ -6,10 +6,10 @@
 package co.edu.javeriana.service;
 
 import co.edu.javeriana.entities.Comment;
-import co.edu.javeriana.entities.Topic;
+import co.edu.javeriana.entities.Forum;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -68,6 +68,26 @@ public class CommentFacadeREST extends AbstractFacade<Comment> {
         }
         super.edit(entity);
     }
+    
+    @PUT
+    @Path("add-points/{id}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Transactional
+    public void editPointsPlus(@PathParam("id") Integer id){
+        Comment comment = super.find(id);
+        comment.setPoints(comment.getPoints()+1);
+        super.edit(comment);
+    }
+    
+    @PUT
+    @Path("remove-points/{id}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Transactional
+    public void editPointsMinus(@PathParam("id") Integer id){
+        Comment comment = super.find(id);
+        comment.setPoints(comment.getPoints()-1);
+        super.edit(comment);
+    }
 
     @DELETE
     @Path("{id}")
@@ -95,15 +115,32 @@ public class CommentFacadeREST extends AbstractFacade<Comment> {
         List<Comment> results = em.createNamedQuery("Comment.findByTopic")
                                     .setParameter("topic", id)
                                     .getResultList();
-        if(results != null 
-                && results.size() > 0 
-                && !results.get(0).getIdTopic().getIdForum().getModerate())
-            return results;
+        ForumFacadeREST facade = new ForumFacadeREST(this.getEntityManager());
+        if(results != null && results.size() > 0){
+            Forum forum = facade.findForum(results.get(0).getIdTopic().getForumId());
+            if(!forum.getModerate()){
+                results.sort(new Comparator<Comment>(){
+                    @Override
+                    public int compare(Comment o1, Comment o2) {
+                        return o2.getPoints() - o1.getPoints();
+                    }
+
+                });
+                return results;
+            }
+        }
         List<Comment> commentsApproved = new ArrayList<>();
         for (Comment result : results) {
             if(result.getApproved())
                 commentsApproved.add(result);
         }
+        commentsApproved.sort(new Comparator<Comment>(){
+            @Override
+            public int compare(Comment o1, Comment o2) {
+                return o2.getPoints() - o1.getPoints();
+            }
+            
+        });
         return commentsApproved;
     }
     

@@ -10,9 +10,11 @@ export class Comment{
         public approved:boolean,
         public content:string,
         public points:number,
-        public idUser:User,
+        public userId:number,
+        public username:string,
         public idTopic:Topic,
-        public date: Date
+        public date: Date,
+        public usersList:Array<User>
     ){}
 
     appendChild(comment: Comment){

@@ -55,7 +55,7 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @Transactional
     public void edit(@PathParam("id") Integer id, Users entity) {
-        System.out.println(" el tamaño de la lista de usuario es "+ entity.getTopicList().size());
+        System.out.println(" el tamaño de la lista de usuario es "+ entity.getCommentList().size());
         super.edit(entity);
        // System.out.println(" el tamaño de la lista de usuario es "+ entity.getTopicList().size());
     }

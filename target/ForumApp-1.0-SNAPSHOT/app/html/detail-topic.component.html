@@ -1,17 +1,19 @@
 <a (click)="goBack()" class="back"><< Volver</a>
 <div class="topic">
-    <span *ngIf="topic.idUser">{{topic.idUser.username}} &ensp;|&ensp; Fecha: {{date}}</span><br>
+    <span *ngIf="topic">{{topic.username}} &ensp;|&ensp; Fecha: {{date}}</span><br>
     <p [innerHTML]="topic.content"></p>
+    <h5 *ngIf="owner"><a (click)="enableEdit(null)">Editar</a></h5>
     <h5><a (click)="enableComment(null)">Responder</a></h5>
 </div>
 <div *ngIf ="comments && comments.length > 0" class="topic">
     <comment-list *ngFor="let c of comments" [comment]="c"></comment-list>
 </div>
-<div *ngIf="reply" class="topic">
+<div *ngIf="reply || editing" class="topic">
     <form [formGroup]="inputForm" novalidate>
         <label for="comment">Contenido: </label>
         <textarea class="contentArea" id="comment" type="text" name="comment" formControlName="comment"[(ngModel)]="comment"></textarea>
         <div class="errorMsg" *ngIf="inputForm.get('comment').touched && inputForm.get('comment').status === 'INVALID'">Contenido requerido. Máx 300 caracteres.</div>
-        <button [disabled]="!inputForm.valid || !inputForm.touched" (click)="creteReply()">Responder</button>
+        <button *ngIf="reply" [disabled]="!inputForm.valid || !inputForm.touched" (click)="creteReply()">Responder</button>
+        <button *ngIf="editing" [disabled]="!inputForm.valid || !inputForm.touched" (click)="creteReply()">Editar</button>
     </form>
 </div>

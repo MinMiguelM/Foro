@@ -70,7 +70,7 @@ public class Comment implements Serializable {
         @JoinColumn(name = "ID_USER", referencedColumnName = "ID")})
     @ManyToMany
     private List<Users> usersList;
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.REMOVE)
     private List<Comment> commentList;
     @JoinColumn(name = "PARENT", referencedColumnName = "ID")
     @ManyToOne(cascade = CascadeType.MERGE)
@@ -83,12 +83,30 @@ public class Comment implements Serializable {
     private Users idUser;
     
     private Long idParent;
+    private Integer userId;
+    private String username;
 
     public Comment() {
     }
 
     public Long getIdParent() {
         return idParent;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setIdParent(Long idParent) {
@@ -173,6 +191,7 @@ public class Comment implements Serializable {
         this.idTopic = idTopic;
     }
 
+    @XmlTransient
     public Users getIdUser() {
         return idUser;
     }

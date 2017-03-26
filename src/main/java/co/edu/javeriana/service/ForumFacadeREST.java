@@ -41,6 +41,15 @@ public class ForumFacadeREST extends AbstractFacade<Forum> {
         super(Forum.class);
     }
 
+    public ForumFacadeREST(EntityManager entityManager) {
+        super(Forum.class);
+        this.em = entityManager;
+    }
+    
+    public Forum findForum(Integer id){
+        return super.find(id);
+    }
+
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
@@ -88,10 +97,11 @@ public class ForumFacadeREST extends AbstractFacade<Forum> {
         List<Topic> topics = topicService.findAll();
         List<Topic> topicsOfForum = new ArrayList<>();
         for (Topic t : topics) {
-            if (t.getIdForum().getId().equals(id)) {
-                if(t.getIdForum().getModerate() && t.getApproved())
+            Forum forum = super.find(t.getForumId());
+            if (forum.getId().equals(id)) {
+                if(forum.getModerate() && t.getApproved())
                     topicsOfForum.add(t);
-                else if(!t.getIdForum().getModerate())
+                else if(!forum.getModerate())
                     topicsOfForum.add(t);
             }
         }
@@ -113,7 +123,8 @@ public class ForumFacadeREST extends AbstractFacade<Forum> {
         List<Topic> topics = topicService.findAll();
         List<Topic> topicsOfForum = new ArrayList<>();
         for (Topic t : topics) {
-            if (t.getIdForum().getId().equals(id) && !t.getApproved()) {
+            Forum forum = super.find(t.getForumId());
+            if (forum.getId().equals(id) && !t.getApproved()) {
                 topicsOfForum.add(t);
             }
         }

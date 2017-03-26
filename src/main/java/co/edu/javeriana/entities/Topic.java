@@ -72,7 +72,7 @@ public class Topic implements Serializable {
     @JoinTable(name = "POINTS_TOPIC", joinColumns = {
         @JoinColumn(name = "ID_TOPIC", referencedColumnName = "ID")}, inverseJoinColumns = {
         @JoinColumn(name = "ID_USER", referencedColumnName = "ID")})
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.REMOVE)
     private List<Users> usersList;
     @JoinColumn(name = "ID_FORUM", referencedColumnName = "ID")
     @ManyToOne
@@ -80,11 +80,39 @@ public class Topic implements Serializable {
     @JoinColumn(name = "ID_USER", referencedColumnName = "ID")
     @ManyToOne
     private Users idUser;
-    @OneToMany(mappedBy = "idTopic",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "idTopic",cascade = CascadeType.REMOVE)
     //@CascadeOnDelete
     private List<Comment> commentList;
+    
+    private Integer userId;
+    private String username;
+    private Integer forumId;
 
     public Topic() {
+    }
+
+    public Integer getForumId() {
+        return forumId;
+    }
+
+    public void setForumId(Integer forumID) {
+        this.forumId = forumID;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Topic(Integer id) {
@@ -153,6 +181,7 @@ public class Topic implements Serializable {
         this.usersList = usersList;
     }
 
+    @XmlTransient
     public Forum getIdForum() {
         return idForum;
     }
@@ -161,6 +190,7 @@ public class Topic implements Serializable {
         this.idForum = idForum;
     }
 
+    @XmlTransient
     public Users getIdUser() {
         return idUser;
     }

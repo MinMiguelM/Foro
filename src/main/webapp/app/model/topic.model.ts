@@ -7,11 +7,9 @@ export class Topic {
         public date: Date,
         public content:string,
         public points:number,
-        public idForum:Forum,
-        public idUser:User,
+        public forumId:number,
+        public userId:number,
+        public username:string,
         public approved:boolean
-    ){
-        idForum = new Forum();
-        idUser = new User();
-    }
+    ){ }
 }

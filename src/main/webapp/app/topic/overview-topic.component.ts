@@ -39,7 +39,7 @@ export class OverviewTopicComponent{
         }
 
         let topic:Topic = JSON.parse(localStorage.getItem('CUR_TOPIC'));
-        if(this.editable || topic && topic.idUser.id == user.id){
+        if(this.editable || topic && topic.userId == user.id){
           this.owner = true;
         }
      }
@@ -52,7 +52,7 @@ export class OverviewTopicComponent{
      remove(){
        let topic:Topic = JSON.parse(localStorage.getItem('CUR_TOPIC'));
        let user = JSON.parse(localStorage.getItem('USER'));
-       if(this.editable || topic.idUser.id == user.id){
+       if(this.editable || topic.userId == user.id){
          this.topicService.remove(topic.id).subscribe(
            success=> this.router.navigate(['/forums']),
            error => console.log(error)
