@@ -70,7 +70,7 @@ public class Comment implements Serializable {
         @JoinColumn(name = "ID_USER", referencedColumnName = "ID")})
     @ManyToMany
     private List<Users> usersList;
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     private List<Comment> commentList;
     @JoinColumn(name = "PARENT", referencedColumnName = "ID")
     @ManyToOne(cascade = CascadeType.MERGE)

@@ -12,7 +12,7 @@
     font-size: 50px;
     clear:both;
 }
-.overview button{
+.button,.remove{
     background: white;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
@@ -25,10 +25,14 @@
     margin:auto;
     display:block;
 }
-.overview button:hover:enabled {
+.button:hover:enabled {
     background-color: deepskyblue;
     color: white;
 }
-.overview button:disabled{
+.button:disabled{
     background-color: lightgray;
+}
+.remove:hover:enabled{
+    background-color: red;  
+    color: white;
 }

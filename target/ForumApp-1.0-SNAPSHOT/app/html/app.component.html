@@ -11,7 +11,8 @@
         <!-- load info of a forum or topic
              depends on the level of navigation -->
         <br>
-        <overview-forum *ngIf="router.url.match('/forum/') || router.url.match('/topic/')"></overview-forum>
+        <overview-forum *ngIf="router.url.match('/forum/')"></overview-forum>
+        <overview-topic *ngIf="router.url.match('/topic/')"></overview-topic>
         
     </div>
 </div>

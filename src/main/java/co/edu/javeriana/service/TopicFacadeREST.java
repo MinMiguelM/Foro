@@ -8,7 +8,6 @@ package co.edu.javeriana.service;
 import co.edu.javeriana.entities.Comment;
 import co.edu.javeriana.entities.Topic;
 import java.util.List;
-import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

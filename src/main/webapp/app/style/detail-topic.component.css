@@ -12,6 +12,10 @@ a {
     text-decoration: none;
     cursor:pointer;
 }
+span{
+    color:gray;
+    float:left;
+}
 .comment{
     padding: 10px;
     text-align: center;

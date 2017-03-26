@@ -1,7 +1,6 @@
 <a (click)="goBack()" class="back"><< Volver</a>
 <div class="topic">
-    <p [innerHTML]="topic.date"></p>
-    
+    <span *ngIf="topic.idUser">{{topic.idUser.username}} &ensp;|&ensp; Fecha: {{date}}</span><br>
     <p [innerHTML]="topic.content"></p>
     <h5><a (click)="enableComment(null)">Responder</a></h5>
 </div>

@@ -1,6 +1,6 @@
 <div *ngIf="moderate && comment.approved || !moderate">
-<span>{{comment.idUser.username}} &ensp;|&ensp; score: {{comment.points}}</span>
-<h5><a href="#">upvote</a>&ensp;|&ensp;<a href="#">downvote</a>&ensp;|&ensp;<a href="#">editar</a>&ensp;|&ensp;<a (click)="enableReply()">responder</a>&ensp;|&ensp;<a href="/ForumApp#/forums">eliminar</a></h5>    
+<span>{{comment.idUser.username}} &ensp;|&ensp; score: {{comment.points}} &ensp;|&ensp; Fecha: {{date}}</span>
+<h5><a href="#">upvote</a>&ensp;|&ensp;<a href="#">downvote</a>&ensp;|&ensp;<a (click)="enableReply()">responder</a>&ensp;|&ensp;<a *ngIf="owner" (click)="edit()">editar</a>&ensp;|&ensp;<a *ngIf="owner" (click)="remove()">eliminar</a></h5>    
 <p>
     {{comment.content}}
     <br><br>

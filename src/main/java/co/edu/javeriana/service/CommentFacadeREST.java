@@ -73,6 +73,11 @@ public class CommentFacadeREST extends AbstractFacade<Comment> {
     @Path("{id}")
     @Transactional
     public void remove(@PathParam("id") Integer id) {
+        Comment comment = super.find(id);
+        Comment parent = comment.getParent();
+        if(parent != null){
+            parent.getCommentList().remove(comment);
+        }
         super.remove(super.find(id));
     }
 

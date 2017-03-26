@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,6 +29,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.eclipse.persistence.annotations.CascadeOnDelete;
 
 /**
  *
@@ -70,7 +72,7 @@ public class Topic implements Serializable {
     @JoinTable(name = "POINTS_TOPIC", joinColumns = {
         @JoinColumn(name = "ID_TOPIC", referencedColumnName = "ID")}, inverseJoinColumns = {
         @JoinColumn(name = "ID_USER", referencedColumnName = "ID")})
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Users> usersList;
     @JoinColumn(name = "ID_FORUM", referencedColumnName = "ID")
     @ManyToOne
@@ -78,7 +80,8 @@ public class Topic implements Serializable {
     @JoinColumn(name = "ID_USER", referencedColumnName = "ID")
     @ManyToOne
     private Users idUser;
-    @OneToMany(mappedBy = "idTopic")
+    @OneToMany(mappedBy = "idTopic",cascade = CascadeType.ALL)
+    //@CascadeOnDelete
     private List<Comment> commentList;
 
     public Topic() {

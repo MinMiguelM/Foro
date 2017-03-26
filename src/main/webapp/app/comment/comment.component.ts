@@ -20,6 +20,11 @@ export class CommentComponent implements OnInit{
     @Input()
     comment: Comment;
     moderate:boolean;
+
+    date:string;
+    forum:Forum;
+    editable:boolean=false;
+    owner:boolean=false;
     
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -35,6 +40,34 @@ export class CommentComponent implements OnInit{
     
     ngOnInit(): void {
         console.log("CommentComponent onInit called: ", this.comment);
+        let d= new Date(this.comment.date);
+        this.date = d.toLocaleDateString() + ' ' +d.toLocaleTimeString();
+
+        //moderation
+        this.forum = JSON.parse(localStorage.getItem('CUR_FORUM'));
+        let user = JSON.parse(localStorage.getItem('USER'));
+        this.moderate = this.forum.moderate;
+        if(user.role.id == 1)
+          this.editable = true;
+        else{
+          for(let i = 0;i < this.forum.usersList.length;i++){
+            if(user.id == this.forum.usersList[i].id){
+              this.editable = true;
+              break;
+            }
+          }
+        }
+
+        if(this.editable || this.comment && this.comment.idUser.id == user.id){
+          this.owner = true;
+        }
+    }
+
+    remove(){
+        this.commentService.remove(this.comment.id).subscribe(
+            success => window.location.reload(),
+            error => console.log(error)
+        )
     }
     
     enableReply(){

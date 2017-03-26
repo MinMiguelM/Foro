@@ -24,6 +24,8 @@ export class DetailTopicComponent implements OnInit{
     comment:string;
     reply: boolean = false;
 
+    date: string;
+
     parent:Comment;
     
     constructor(
@@ -49,6 +51,8 @@ export class DetailTopicComponent implements OnInit{
             .subscribe(
                 topic => {
                     this.topic = topic;
+                    let d = new Date(this.topic.date);
+                    this.date = d.toLocaleDateString()+' '+d.toLocaleTimeString();
                     console.log("Received topic info: ", this.topic);
                 },
                 error => this.message = 'No tienes permisos para ver esta página'
