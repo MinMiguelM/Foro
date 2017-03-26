@@ -41,4 +41,12 @@ export class TopicService extends RestClient<Topic> {
             });
     }
 
+    editTopic(id:number,topic:Topic)
+    {
+        let url = this.baseURL + id;
+        return this.http.put(url,topic)
+            .map((res:Response) => {
+                return res.json()
+            });
+    }
 }

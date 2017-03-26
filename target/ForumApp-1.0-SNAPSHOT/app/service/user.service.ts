@@ -20,6 +20,15 @@ export class UserService extends RestClient<User> {
         return this.http.get(url)
             .map((res: Response) => res.json());
     }
+
+    editUser(id:number,user:User)
+    {
+        let url = this.baseURL + id;
+        return this.http.put(url,user)
+            .map((res:Response) => {
+                return res.json()
+            });
+    }
 }
 
 

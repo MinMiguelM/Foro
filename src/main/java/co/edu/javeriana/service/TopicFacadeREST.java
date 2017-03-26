@@ -56,6 +56,7 @@ public class TopicFacadeREST extends AbstractFacade<Topic> {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @Transactional
     public void edit(@PathParam("id") Integer id, Topic entity) {
+        System.out.println("punto que tiene es "+entity.getPoints());
         super.edit(entity);
     }
 

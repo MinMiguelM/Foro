@@ -53,8 +53,11 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Transactional
     public void edit(@PathParam("id") Integer id, Users entity) {
+        System.out.println(" el tamaño de la lista de usuario es "+ entity.getTopicList().size());
         super.edit(entity);
+       // System.out.println(" el tamaño de la lista de usuario es "+ entity.getTopicList().size());
     }
 
     @DELETE
