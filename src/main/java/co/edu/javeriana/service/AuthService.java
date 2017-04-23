@@ -6,7 +6,11 @@
 package co.edu.javeriana.service;
 
 import co.edu.javeriana.entities.Users;
+import java.util.List;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
@@ -36,22 +40,41 @@ public class AuthService {
 
     @Inject
     UsersFacadeREST userStore;
+    
+    @PersistenceContext(unitName = "co.edu.javeriana_ForumApp_war_1.0-SNAPSHOTPU")
+    private EntityManager em;
 
+//    @POST
+//    @Path("login")
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Users login(Users loginCredentials) {
+//        Users user = userStore.findByName(loginCredentials.getUsername());
+//        
+//        // TODO: cambiar el if por la siguiente linea. Se debe guardar la contraseña hashed en el userStore y en la DB
+//        //if ( user != null && BCrypt.checkpw(loginCredentials.getPassword(), user.getPassword()) )
+//        if (user != null && loginCredentials.getPassword().equals(user.getPassword())) {
+//            HttpSession session = req.getSession();
+//            session.setAttribute("USER", user);
+//            return user;
+//        } else {
+//            logout();
+//            throw new WebApplicationException(Response.Status.UNAUTHORIZED);
+//        }
+//    }
+    
     @POST
     @Path("login")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Users login(Users loginCredentials) {
-        Users user = userStore.findByName(loginCredentials.getUsername());
-        
-        // TODO: cambiar el if por la siguiente linea. Se debe guardar la contraseña hashed en el userStore y en la DB
-        //if ( user != null && BCrypt.checkpw(loginCredentials.getPassword(), user.getPassword()) )
-        if (user != null && loginCredentials.getPassword().equals(user.getPassword())) {
-            HttpSession session = req.getSession();
-            session.setAttribute("USER", user);
-            return user;
-        } else {
-            logout();
+        Query query = em.createNativeQuery("SELECT * FROM Users  WHERE username = '"+loginCredentials.getUsername()+
+                "' and password = '"+loginCredentials.getPassword()+"'",Users.class);
+        List<Users> users = (List<Users>)query.getResultList();
+        if(users != null && !users.isEmpty()){
+            Users u = (Users)users.get(0);
+            return u;
+        }else{
             throw new WebApplicationException(Response.Status.UNAUTHORIZED);
         }
     }

@@ -87,13 +87,26 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
         }
     }
     
+//    @GET
+//    @Path("find-username/{userName}")
+//    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+//    public List<Users> findByLikeName(@PathParam("userName") String userName) {
+//        Query query = em.createNamedQuery("Users.findLikeUsername");
+//        query.setParameter("username", "%"+userName+"%");
+//        List<Users> results = query.getResultList();
+//        for (int i = 0; i< results.size() ; i++) {
+//            results.get(i).setPassword("");
+//        }
+//        return results;
+//    }
+    
     @GET
     @Path("find-username/{userName}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Users> findByLikeName(@PathParam("userName") String userName) {
-        Query query = em.createNamedQuery("Users.findLikeUsername");
-        query.setParameter("username", "%"+userName+"%");
-        List<Users> results = query.getResultList();
+        Query query = em.createNativeQuery("select * from users where username = '"+
+                userName +"'",Users.class);
+        List<Users> results = (List<Users>)query.getResultList();
         return results;
     }
 
